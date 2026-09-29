@@ -1,0 +1,91 @@
+# Entity: update_contact_topics_response_success
+
+main: kit: entity: update_contact_topics_response_success: {
+
+  alias: field: {}
+
+  fields: {
+    contact_id: {
+      h: "Contact Id"
+      n: "contact_id"
+      r: false
+      sh: "The ID of the contact."
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The object type."
+      t: "`$STRING`"
+    }
+    topics: {
+      h: "Topics"
+      n: "topics"
+      op: {
+        update: {
+          req: true
+          type: "`$ARRAY`"
+        }
+      }
+      r: false
+      sh: "Array of updated topic subscriptions."
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "update_contact_topics_response_success"
+  op: {
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PATCH /contacts/{contact_id}/topics"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "contact_id"
+                or: "contact_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/contacts/{contact_id}/topics"
+          q: {
+            exist: [
+              "contact_id"
+            ]
+          }
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "topics"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.contact")]
+  ]
+
+}

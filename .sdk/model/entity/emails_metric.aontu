@@ -1,0 +1,169 @@
+# Entity: emails_metric
+
+main: kit: entity: emails_metric: {
+
+  alias: field: {}
+
+  fields: {
+    broadcast_id: {
+      fo: "uuid"
+      h: "Broadcast Id"
+      n: "broadcast_id"
+      r: false
+      sh: "Present when `broadcast` is in `dimensions`."
+      t: "`$STRING`"
+    }
+    broadcast_name: {
+      h: "Broadcast Name"
+      n: "broadcast_name"
+      r: false
+      sh: "Present when `broadcast` is in `dimensions`."
+      t: "`$STRING`"
+    }
+    domain_id: {
+      fo: "uuid"
+      h: "Domain Id"
+      n: "domain_id"
+      r: false
+      sh: "Present when `domain` is in `dimensions`."
+      t: "`$STRING`"
+    }
+    domain_name: {
+      h: "Domain Name"
+      n: "domain_name"
+      r: false
+      sh: "Present when `domain` is in `dimensions`."
+      t: "`$STRING`"
+    }
+    email_id: {
+      fo: "uuid"
+      h: "Email Id"
+      n: "email_id"
+      r: false
+      sh: "Present when `email` is in `dimensions`."
+      t: "`$STRING`"
+    }
+    period: {
+      h: "Period"
+      n: "period"
+      r: false
+      sh: "Present when `period` is in `dimensions`."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "emails_metric"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /emails/metrics"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "broadcast_id"
+                or: "broadcast_id"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                k: "query"
+                n: "dimension"
+                or: "dimensions"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                k: "query"
+                n: "domain_id"
+                or: "domain_id"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                k: "query"
+                n: "email_id"
+                or: "email_id"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                k: "query"
+                n: "end_date"
+                or: "end_date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "daily"
+                k: "query"
+                n: "granularity"
+                or: "granularity"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "metric"
+                or: "metrics"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                k: "query"
+                n: "start_date"
+                or: "start_date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "UTC"
+                k: "query"
+                n: "timezone"
+                or: "timezone"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/emails/metrics"
+          q: {
+            exist: [
+              "broadcast_id"
+              "dimension"
+              "domain_id"
+              "email_id"
+              "end_date"
+              "granularity"
+              "metric"
+              "start_date"
+              "timezone"
+            ]
+          }
+          s: [
+            {
+              lit: "emails"
+            }
+            {
+              lit: "metrics"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

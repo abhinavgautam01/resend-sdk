@@ -1,0 +1,172 @@
+# Entity: list_broadcast_recipients_response_success
+
+main: kit: entity: list_broadcast_recipients_response_success: {
+
+  alias: field: {}
+
+  fields: {
+    bounce_type: {
+      h: "Bounce Type"
+      n: "bounce_type"
+      r: false
+      sh: "The type of bounce."
+      t: "`$STRING`"
+    }
+    clicked_links: {
+      h: "Clicked Links"
+      n: "clicked_links"
+      r: false
+      sh: "The links this recipient clicked."
+      t: "`$ARRAY`"
+    }
+    contact_id: {
+      h: "Contact Id"
+      n: "contact_id"
+      r: false
+      sh: "The ID of the contact associated with this recipient, if one exists."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    count: {
+      h: "Count"
+      n: "count"
+      r: false
+      sh: "The number of times this recipient triggered the event."
+      t: "`$INTEGER`"
+    }
+    email: {
+      h: "Email"
+      n: "email"
+      r: false
+      sh: "The recipient's email address."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Opaque cursor identifying this row, used for pagination."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "list_broadcast_recipients_response_success"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /broadcasts/{id}/recipients"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "broadcast_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "after"
+                or: "after"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "before"
+                or: "before"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "bounce_type"
+                or: "bounce_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "email"
+                or: "email"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "type"
+                or: "type"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/broadcasts/{id}/recipients"
+          q: {
+            exist: [
+              "after"
+              "before"
+              "bounce_type"
+              "broadcast_id"
+              "email"
+              "limit"
+              "type"
+            ]
+          }
+          r: {
+            param: {
+              id: "broadcast_id"
+            }
+          }
+          s: [
+            {
+              lit: "broadcasts"
+            }
+            {
+              var: "broadcast_id"
+            }
+            {
+              lit: "recipients"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.broadcast")]
+  ]
+
+}

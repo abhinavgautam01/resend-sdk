@@ -1,0 +1,200 @@
+
+import { cmp, Content, isAuthActive, isHttpBasicAuth, envName, entityIdField, entityDataIdField, pickExampleEntity, opRequestShape, safeVarName, exampleVarName, jsKey } from '@voxgig/sdkgen'
+
+import {
+  KIT,
+  getModelPath,
+  nom,
+} from '@voxgig/apidef'
+
+import { exampleValue } from './utility_ts'
+
+
+const ReadmeHowto = cmp(function ReadmeHowto(props: any) {
+  const { target, ctx$: { model } } = props
+
+  const entity = getModelPath(model, `main.${KIT}.entity`)
+  const { entity: exampleEntity, primaryOp } = pickExampleEntity(entity)
+  const eName = exampleEntity ? nom(exampleEntity, 'Name') : 'Entity'
+  const eVar = exampleVarName(eName.toLowerCase(), 'ts')
+
+  const primaryOpDef = exampleEntity && primaryOp && exampleEntity.op && exampleEntity.op[primaryOp]
+  const isMatchOp = 'load' === primaryOp || 'remove' === primaryOp
+  // Model-driven id key: `idF` is the entity's id-like MATCH field name, or null
+  // when it has none. `dataIdF` is the id on the RETURNED record's data type —
+  // reading `.id` off a record whose data type has none is a TS2339.
+  const idF = exampleEntity ? entityIdField(exampleEntity) : null
+  const dataIdF = exampleEntity ? entityDataIdField(exampleEntity) : null
+
+  const primaryArg = (idPlaceholder: string): string => {
+    if (!exampleEntity || !primaryOp) return ''
+    if ('list' === primaryOp) return ''
+    if (isMatchOp) {
+      // Every REQUIRED match key (id first), not just idF — a composite-match
+      // entity (e.g. Umbrella's FlatPermission, database_id + id) needs them all
+      // to satisfy the typed <Name>LoadMatch. Mirrors ReadmeTopTest.
+      const items = opRequestShape(exampleEntity, primaryOp).items
+        .filter((it: any) => !it.optional || it.name === idF)
+        .sort((a: any, b: any) => (a.name === idF ? 0 : 1) - (b.name === idF ? 0 : 1))
+      if (0 === items.length) return ''
+      const pairs = items.map((it: any) =>
+        `${jsKey(it.name)}: ${exampleValue(exampleEntity, primaryOpDef, it.name,
+          it.name === idF ? idPlaceholder : 'example_' + it.name)}`)
+      return `{ ${pairs.join(', ')} }`
+    }
+    const isIdField = (it: any) => it.name === idF || it.name === 'id'
+    const items = opRequestShape(exampleEntity, primaryOp).items
+      .filter((it: any) => !isIdField(it) || !it.optional)
+    const required = items.filter((it: any) => !it.optional)
+    const chosen = required.length ? required : items.slice(0, 3)
+    const pairs = chosen.map((it: any) =>
+      `${jsKey(it.name)}: ${exampleValue(exampleEntity, primaryOpDef, it.name,
+        isIdField(it) ? idPlaceholder : 'example_' + it.name)}`)
+    return `{ ${pairs.join(', ')} }`
+  }
+  const testCallArg = primaryArg('test01')
+  const stateCallArg = primaryArg('example')
+  const stateDataLine = dataIdF
+    ? `console.log(data.${dataIdF})`
+    : `console.log(data)`
+
+  // The op-driven example lines, shown only when the SDK has an entity op.
+  // A direct()-only SDK (no ops anywhere) shows a direct() test call instead.
+  const testModeExample = primaryOp
+    ? `const ${eVar} = await client.${eName}().${primaryOp}(${testCallArg})
+// ${eVar} is the entity, populated with mock response data
+// — call ${eVar}.data() for the record itself
+console.log(${eVar})`
+    : `const result = await client.direct({ path: '/api/resource', method: 'GET' })
+console.log(result)`
+  const stateSection = primaryOp
+    ? `### Retain entity state across calls
+
+Entity instances remember their last match and data:
+
+\`\`\`ts
+const entity = client.${eName}()
+
+// First call runs the operation and stores its result
+await entity.${primaryOp}(${stateCallArg})
+
+// Subsequent calls reuse the stored state
+const data = entity.data()
+${stateDataLine}
+\`\`\`
+
+`
+    : ''
+
+  const authActive = isAuthActive(model)
+  const authBasic = authActive && isHttpBasicAuth(model)
+  const apikeyTesterCtor = authActive
+    ? `new ${model.const.Name}SDK({ apikey: '...'${authBasic ? `, secret: '...'` : ''} })`
+    : `new ${model.const.Name}SDK()`
+  const apikeyExtendField = authActive
+    ? `\n  apikey: '...',${authBasic ? `\n  secret: '...',` : ''}`
+    : ''
+  const apikeyEnvLine = authActive
+    ? `\n${envName(model)}_APIKEY=<your-key>${authBasic ? `\n${envName(model)}_SECRET=<your-secret>` : ''}`
+    : ''
+
+  Content(`### Make a direct HTTP request
+
+For endpoints not covered by entity methods:
+
+\`\`\`ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example' },
+})
+
+if (result instanceof Error) {
+  throw result
+}
+if (result.ok) {
+  console.log(result.status)  // 200
+  console.log(result.data)    // response body
+}
+\`\`\`
+
+### Prepare a request without sending it
+
+\`\`\`ts
+const fetchdef = await client.prepare({
+  path: '/api/resource/{id}',
+  method: 'DELETE',
+  params: { id: 'example' },
+})
+
+// Inspect before sending
+console.log(fetchdef.url)
+console.log(fetchdef.method)
+console.log(fetchdef.headers)
+\`\`\`
+
+### Use test mode
+
+Create a mock client for unit testing \u2014 no server required:
+
+\`\`\`ts
+const client = ${model.const.Name}SDK.test()
+
+${testModeExample}
+\`\`\`
+
+You can also use the instance method:
+
+\`\`\`ts
+const client = ${apikeyTesterCtor}
+const testClient = client.tester()
+\`\`\`
+
+${stateSection}### Add custom middleware
+
+Pass features via the \`extend\` option:
+
+\`\`\`ts
+const logger = {
+  hooks: {
+    PreRequest: (ctx: any) => {
+      console.log('Requesting:', ctx.spec.method, ctx.spec.path)
+    },
+    PreResponse: (ctx: any) => {
+      console.log('Status:', ctx.out.request?.status)
+    },
+  },
+}
+
+const client = new ${model.const.Name}SDK({${apikeyExtendField}
+  extend: [logger],
+})
+\`\`\`
+
+### Run live tests
+
+Create a \`.env.local\` file at the project root:
+
+\`\`\`
+${envName(model)}_TEST_LIVE=TRUE${apikeyEnvLine}
+\`\`\`
+
+Then run:
+
+\`\`\`bash
+cd ts && npm test
+\`\`\`
+
+Live entity tests continue independent operations after errors and attempt
+supported cleanup. Their final result reports failures and missing prerequisites
+after the remaining work completes. The model and test inputs determine which
+API operations the generated scenarios cover.
+
+`)
+
+})
+
+
+export {
+  ReadmeHowto
+}

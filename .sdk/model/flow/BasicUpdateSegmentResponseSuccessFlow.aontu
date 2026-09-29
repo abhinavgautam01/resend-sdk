@@ -1,0 +1,29 @@
+# BasicUpdateSegmentResponseSuccessFlow
+
+main: kit: flow: BasicUpdateSegmentResponseSuccessFlow:
+{
+  entity: "update_segment_response_success",
+  kind: "basic",
+  name: "BasicUpdateSegmentResponseSuccessFlow",
+  step: [
+    {
+      i: {
+        ref: "update_segment_response_success_ref01",
+        srcdatavar: "update_segment_response_success_ref01_data",
+        suffix: "_up0",
+        textfield: "name"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-update_segment_response_success_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUpdateSegmentResponseSuccessFlow"
+}

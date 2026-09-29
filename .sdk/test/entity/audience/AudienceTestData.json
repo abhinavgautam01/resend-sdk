@@ -1,0 +1,50 @@
+{
+  "existing": {
+    "audience": {
+      "AUDIENCE00": {
+        "created_at": "s28",
+        "id": "AUDIENCE00",
+        "name": "s2a",
+        "object": "s2b"
+      },
+      "AUDIENCE01": {
+        "created_at": "s50",
+        "id": "AUDIENCE01",
+        "name": "s52",
+        "object": "s53"
+      },
+      "AUDIENCE02": {
+        "created_at": "s78",
+        "id": "AUDIENCE02",
+        "name": "s7a",
+        "object": "s7b"
+      }
+    }
+  },
+  "new": {
+    "audience": {
+      "audience_ref01": {
+        "created_at": "sa0",
+        "name": "sa2",
+        "object": "sa3"
+      }
+    }
+  },
+  "requests": {
+    "POST /audiences": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /audiences": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /audiences/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

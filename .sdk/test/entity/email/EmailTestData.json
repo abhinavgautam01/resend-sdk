@@ -1,0 +1,120 @@
+{
+  "existing": {
+    "email": {
+      "EMAIL00": {
+        "attachments": [],
+        "bcc": [],
+        "cc": [],
+        "created_at": "sc1",
+        "from": "sc2",
+        "headers": {},
+        "html": "sc4",
+        "id": "EMAIL00",
+        "last_event": "sc6",
+        "message_id": "MESSAGE01",
+        "object": "sc8",
+        "reply_to": [],
+        "scheduled_at": "sca",
+        "subject": "scb",
+        "tags": [],
+        "template": "scd",
+        "text": "sce",
+        "to": [],
+        "topic_id": "TOPIC01"
+      },
+      "EMAIL01": {
+        "attachments": [],
+        "bcc": [],
+        "cc": [],
+        "created_at": "s17f",
+        "from": "s180",
+        "headers": {},
+        "html": "s182",
+        "id": "EMAIL01",
+        "last_event": "s184",
+        "message_id": "MESSAGE01",
+        "object": "s186",
+        "reply_to": [],
+        "scheduled_at": "s188",
+        "subject": "s189",
+        "tags": [],
+        "template": "s18b",
+        "text": "s18c",
+        "to": [],
+        "topic_id": "TOPIC01"
+      },
+      "EMAIL02": {
+        "attachments": [],
+        "bcc": [],
+        "cc": [],
+        "created_at": "s23d",
+        "from": "s23e",
+        "headers": {},
+        "html": "s240",
+        "id": "EMAIL02",
+        "last_event": "s242",
+        "message_id": "MESSAGE01",
+        "object": "s244",
+        "reply_to": [],
+        "scheduled_at": "s246",
+        "subject": "s247",
+        "tags": [],
+        "template": "s249",
+        "text": "s24a",
+        "to": [],
+        "topic_id": "TOPIC01"
+      }
+    }
+  },
+  "new": {
+    "email": {
+      "email_ref01": {
+        "attachments": [],
+        "bcc": [],
+        "cc": [],
+        "created_at": "s2fb",
+        "from": "s2fc",
+        "headers": {},
+        "html": "s2fe",
+        "last_event": "s300",
+        "message_id": "MESSAGE01",
+        "object": "s302",
+        "reply_to": [],
+        "scheduled_at": "s304",
+        "subject": "s305",
+        "tags": [],
+        "template": "s307",
+        "text": "s308",
+        "to": [],
+        "topic_id": "TOPIC01"
+      }
+    }
+  },
+  "requests": {
+    "POST /emails/{email_id}/cancel": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /emails/{email_id}/share": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /emails": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /emails": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /emails/{email_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

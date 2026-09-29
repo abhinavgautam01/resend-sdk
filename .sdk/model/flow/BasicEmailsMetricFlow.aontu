@@ -1,0 +1,22 @@
+# BasicEmailsMetricFlow
+
+main: kit: flow: BasicEmailsMetricFlow:
+{
+  entity: "emails_metric",
+  kind: "basic",
+  name: "BasicEmailsMetricFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "emails_metric_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEmailsMetricFlow"
+}

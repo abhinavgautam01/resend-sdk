@@ -1,0 +1,52 @@
+# BasicContactFlow
+
+main: kit: flow: BasicContactFlow:
+{
+  entity: "contact",
+  kind: "basic",
+  name: "BasicContactFlow",
+  step: [
+    {
+      i: {
+        ref: "contact_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "contact_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "contact_ref01",
+        srcdatavar: "contact_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "contact01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-contact_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicContactFlow"
+}

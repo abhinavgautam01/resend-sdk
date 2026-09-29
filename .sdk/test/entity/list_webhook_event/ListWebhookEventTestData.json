@@ -1,0 +1,43 @@
+{
+  "existing": {
+    "list_webhook_event": {
+      "LIST_WEBHOOK_EVENT00": {
+        "created_at": "s28",
+        "id": "LIST_WEBHOOK_EVENT00",
+        "status": "s2a",
+        "type": "s2b",
+        "webhook_id": "WEBHOOK01"
+      },
+      "LIST_WEBHOOK_EVENT01": {
+        "created_at": "s50",
+        "id": "LIST_WEBHOOK_EVENT01",
+        "status": "s52",
+        "type": "s53",
+        "webhook_id": "WEBHOOK01"
+      },
+      "LIST_WEBHOOK_EVENT02": {
+        "created_at": "s78",
+        "id": "LIST_WEBHOOK_EVENT02",
+        "status": "s7a",
+        "type": "s7b",
+        "webhook_id": "WEBHOOK01"
+      }
+    }
+  },
+  "new": {
+    "list_webhook_event": {
+      "list_webhook_event_ref01": {
+        "created_at": "sa0",
+        "status": "sa2",
+        "type": "sa3"
+      }
+    }
+  },
+  "requests": {
+    "GET /webhooks/{webhook_id}/events": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

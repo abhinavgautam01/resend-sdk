@@ -1,0 +1,58 @@
+{
+  "existing": {
+    "remove_topic_response_success": {
+      "REMOVE_TOPIC_RESPONSE_SUCCESS00": {
+        "created_at": "s3c",
+        "default_subscription": "s3d",
+        "description": "s3e",
+        "id": "REMOVE_TOPIC_RESPONSE_SUCCESS00",
+        "name": "s40",
+        "visibility": "s41"
+      },
+      "REMOVE_TOPIC_RESPONSE_SUCCESS01": {
+        "created_at": "s78",
+        "default_subscription": "s79",
+        "description": "s7a",
+        "id": "REMOVE_TOPIC_RESPONSE_SUCCESS01",
+        "name": "s7c",
+        "visibility": "s7d"
+      },
+      "REMOVE_TOPIC_RESPONSE_SUCCESS02": {
+        "created_at": "sb4",
+        "default_subscription": "sb5",
+        "description": "sb6",
+        "id": "REMOVE_TOPIC_RESPONSE_SUCCESS02",
+        "name": "sb8",
+        "visibility": "sb9"
+      }
+    }
+  },
+  "new": {
+    "remove_topic_response_success": {
+      "remove_topic_response_success_ref01": {
+        "created_at": "sf0",
+        "default_subscription": "sf1",
+        "description": "sf2",
+        "name": "sf4",
+        "visibility": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "POST /topics": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /topics": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /topics/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

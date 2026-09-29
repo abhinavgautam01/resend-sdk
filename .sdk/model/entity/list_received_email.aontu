@@ -1,0 +1,175 @@
+# Entity: list_received_email
+
+main: kit: entity: list_received_email: {
+
+  alias: field: {}
+
+  fields: {
+    attachments: {
+      h: "Attachments"
+      n: "attachments"
+      r: false
+      sh: "Array of attachments for this email."
+      t: "`$ARRAY`"
+    }
+    bcc: {
+      h: "Bcc"
+      n: "bcc"
+      r: false
+      sh: "The BCC recipients."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    cc: {
+      h: "Cc"
+      n: "cc"
+      r: false
+      sh: "The CC recipients."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "Timestamp when the email was received."
+      t: "`$STRING`"
+    }
+    from: {
+      h: "From"
+      n: "from"
+      r: false
+      sh: "The sender email address."
+      t: "`$STRING`"
+    }
+    id: {
+      fo: "uuid"
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the received email."
+      t: "`$STRING`"
+    }
+    message_id: {
+      h: "Message Id"
+      n: "message_id"
+      r: false
+      sh: "The unique message ID from the email headers."
+      t: "`$STRING`"
+    }
+    reply_to: {
+      h: "Reply To"
+      n: "reply_to"
+      r: false
+      sh: "The reply-to addresses."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    subject: {
+      h: "Subject"
+      n: "subject"
+      r: false
+      sh: "The email subject."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    to: {
+      h: "To"
+      n: "to"
+      r: false
+      sh: "The recipient email addresses."
+      t: "`$ARRAY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "list_received_email"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /emails/receiving"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "after"
+                or: "after"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "before"
+                or: "before"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/emails/receiving"
+          q: {
+            exist: [
+              "after"
+              "before"
+              "limit"
+            ]
+          }
+          s: [
+            {
+              lit: "emails"
+            }
+            {
+              lit: "receiving"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

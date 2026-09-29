@@ -1,0 +1,58 @@
+{
+  "existing": {
+    "api_key": {
+      "API_KEY00": {
+        "created_at": "s3c",
+        "domain_id": "DOMAIN01",
+        "id": "API_KEY00",
+        "last_used_at": "s3f",
+        "name": "s40",
+        "permission": "s41"
+      },
+      "API_KEY01": {
+        "created_at": "s78",
+        "domain_id": "DOMAIN01",
+        "id": "API_KEY01",
+        "last_used_at": "s7b",
+        "name": "s7c",
+        "permission": "s7d"
+      },
+      "API_KEY02": {
+        "created_at": "sb4",
+        "domain_id": "DOMAIN01",
+        "id": "API_KEY02",
+        "last_used_at": "sb7",
+        "name": "sb8",
+        "permission": "sb9"
+      }
+    }
+  },
+  "new": {
+    "api_key": {
+      "api_key_ref01": {
+        "created_at": "sf0",
+        "domain_id": "DOMAIN01",
+        "last_used_at": "sf3",
+        "name": "sf4",
+        "permission": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "POST /api-keys": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /api-keys": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /api-keys/{api_key_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+# Entity: remove_contact_from_segment_response_success
+
+main: kit: entity: remove_contact_from_segment_response_success: {
+
+  alias: field: {}
+
+  name: "remove_contact_from_segment_response_success"
+  op: {
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /contacts/{contact_id}/segments/{segment_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "contact_id"
+                or: "contact_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "segment_id"
+                or: "segment_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/contacts/{contact_id}/segments/{segment_id}"
+          q: {
+            exist: [
+              "contact_id"
+              "segment_id"
+            ]
+          }
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "segments"
+            }
+            {
+              var: "segment_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.contact") path("$.main.kit.entity.segment")]
+  ]
+
+}

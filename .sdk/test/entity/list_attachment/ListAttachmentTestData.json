@@ -1,0 +1,67 @@
+{
+  "existing": {
+    "list_attachment": {
+      "LIST_ATTACHMENT00": {
+        "content_disposition": "s50",
+        "content_id": "CONTENT01",
+        "content_type": "s52",
+        "download_url": "s53",
+        "expires_at": "s54",
+        "filename": "s55",
+        "id": "LIST_ATTACHMENT00",
+        "size": 87,
+        "email_id": "EMAIL01",
+        "receiving_id": "RECEIVING01"
+      },
+      "LIST_ATTACHMENT01": {
+        "content_disposition": "sa0",
+        "content_id": "CONTENT01",
+        "content_type": "sa2",
+        "download_url": "sa3",
+        "expires_at": "sa4",
+        "filename": "sa5",
+        "id": "LIST_ATTACHMENT01",
+        "size": 167,
+        "email_id": "EMAIL01",
+        "receiving_id": "RECEIVING01"
+      },
+      "LIST_ATTACHMENT02": {
+        "content_disposition": "sf0",
+        "content_id": "CONTENT01",
+        "content_type": "sf2",
+        "download_url": "sf3",
+        "expires_at": "sf4",
+        "filename": "sf5",
+        "id": "LIST_ATTACHMENT02",
+        "size": 247,
+        "email_id": "EMAIL01",
+        "receiving_id": "RECEIVING01"
+      }
+    }
+  },
+  "new": {
+    "list_attachment": {
+      "list_attachment_ref01": {
+        "content_disposition": "s140",
+        "content_id": "CONTENT01",
+        "content_type": "s142",
+        "download_url": "s143",
+        "expires_at": "s144",
+        "filename": "s145",
+        "size": 327
+      }
+    }
+  },
+  "requests": {
+    "GET /emails/{email_id}/attachments": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /emails/receiving/{email_id}/attachments": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "existing": {
+    "update_api_key": {
+      "UPDATE_API_KEY00": {
+        "id": "UPDATE_API_KEY00",
+        "name": "s1f",
+        "object": "s20"
+      },
+      "UPDATE_API_KEY01": {
+        "id": "UPDATE_API_KEY01",
+        "name": "s3d",
+        "object": "s3e"
+      },
+      "UPDATE_API_KEY02": {
+        "id": "UPDATE_API_KEY02",
+        "name": "s5b",
+        "object": "s5c"
+      }
+    }
+  },
+  "new": {
+    "update_api_key": {
+      "update_api_key_ref01": {
+        "name": "s79",
+        "object": "s7a"
+      }
+    }
+  },
+  "requests": {
+    "PATCH /api-keys/{api_key_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

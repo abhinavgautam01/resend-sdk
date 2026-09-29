@@ -1,0 +1,64 @@
+{
+  "existing": {
+    "update_template_response_success": {
+      "UPDATE_TEMPLATE_RESPONSE_SUCCESS00": {
+        "alias": "s64",
+        "from": "s65",
+        "html": "s66",
+        "id": "UPDATE_TEMPLATE_RESPONSE_SUCCESS00",
+        "name": "s68",
+        "object": "s69",
+        "reply_to": [],
+        "subject": "s6b",
+        "text": "s6c",
+        "variables": []
+      },
+      "UPDATE_TEMPLATE_RESPONSE_SUCCESS01": {
+        "alias": "sc8",
+        "from": "sc9",
+        "html": "sca",
+        "id": "UPDATE_TEMPLATE_RESPONSE_SUCCESS01",
+        "name": "scc",
+        "object": "scd",
+        "reply_to": [],
+        "subject": "scf",
+        "text": "sd0",
+        "variables": []
+      },
+      "UPDATE_TEMPLATE_RESPONSE_SUCCESS02": {
+        "alias": "s12c",
+        "from": "s12d",
+        "html": "s12e",
+        "id": "UPDATE_TEMPLATE_RESPONSE_SUCCESS02",
+        "name": "s130",
+        "object": "s131",
+        "reply_to": [],
+        "subject": "s133",
+        "text": "s134",
+        "variables": []
+      }
+    }
+  },
+  "new": {
+    "update_template_response_success": {
+      "update_template_response_success_ref01": {
+        "alias": "s190",
+        "from": "s191",
+        "html": "s192",
+        "name": "s194",
+        "object": "s195",
+        "reply_to": [],
+        "subject": "s197",
+        "text": "s198",
+        "variables": []
+      }
+    }
+  },
+  "requests": {
+    "PATCH /templates/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

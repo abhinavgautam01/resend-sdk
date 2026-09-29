@@ -1,0 +1,55 @@
+{
+  "existing": {
+    "update_domain_response_success": {
+      "UPDATE_DOMAIN_RESPONSE_SUCCESS00": {
+        "capabilities": {},
+        "click_tracking": false,
+        "id": "UPDATE_DOMAIN_RESPONSE_SUCCESS00",
+        "object": "s49",
+        "open_tracking": true,
+        "tls": "s4b",
+        "tracking_subdomain": "s4c",
+        "domain_id": "DOMAIN01"
+      },
+      "UPDATE_DOMAIN_RESPONSE_SUCCESS01": {
+        "capabilities": {},
+        "click_tracking": false,
+        "id": "UPDATE_DOMAIN_RESPONSE_SUCCESS01",
+        "object": "s8f",
+        "open_tracking": true,
+        "tls": "s91",
+        "tracking_subdomain": "s92",
+        "domain_id": "DOMAIN01"
+      },
+      "UPDATE_DOMAIN_RESPONSE_SUCCESS02": {
+        "capabilities": {},
+        "click_tracking": false,
+        "id": "UPDATE_DOMAIN_RESPONSE_SUCCESS02",
+        "object": "sd5",
+        "open_tracking": true,
+        "tls": "sd7",
+        "tracking_subdomain": "sd8",
+        "domain_id": "DOMAIN01"
+      }
+    }
+  },
+  "new": {
+    "update_domain_response_success": {
+      "update_domain_response_success_ref01": {
+        "capabilities": {},
+        "click_tracking": false,
+        "object": "s11b",
+        "open_tracking": true,
+        "tls": "s11d",
+        "tracking_subdomain": "s11e"
+      }
+    }
+  },
+  "requests": {
+    "PATCH /domains/{domain_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

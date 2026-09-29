@@ -1,0 +1,11 @@
+# SDK Configuration
+
+main: kit: config: {
+
+
+
+  headers: {
+    'content-type': 'application/json'
+  }
+
+}

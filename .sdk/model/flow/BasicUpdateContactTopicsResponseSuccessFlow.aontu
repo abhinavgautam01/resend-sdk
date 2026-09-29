@@ -1,0 +1,29 @@
+# BasicUpdateContactTopicsResponseSuccessFlow
+
+main: kit: flow: BasicUpdateContactTopicsResponseSuccessFlow:
+{
+  entity: "update_contact_topics_response_success",
+  kind: "basic",
+  name: "BasicUpdateContactTopicsResponseSuccessFlow",
+  step: [
+    {
+      i: {
+        ref: "update_contact_topics_response_success_ref01",
+        srcdatavar: "update_contact_topics_response_success_ref01_data",
+        suffix: "_up0",
+        textfield: "object"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-update_contact_topics_response_success_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUpdateContactTopicsResponseSuccessFlow"
+}

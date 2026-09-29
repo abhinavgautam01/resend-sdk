@@ -1,0 +1,22 @@
+# BasicListReceivedEmailFlow
+
+main: kit: flow: BasicListReceivedEmailFlow:
+{
+  entity: "list_received_email",
+  kind: "basic",
+  name: "BasicListReceivedEmailFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "list_received_email_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicListReceivedEmailFlow"
+}

@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "abhinavgautam01-resend-sdk"
+version = "0.0.1"
+description = "Unofficial generated Python SDK for the Resend public API. Not affiliated with or endorsed by the upstream API provider."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.8"
+keywords = ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "resend"]
+dependencies = [
+    "requests>=2.33",
+]
+
+[project.urls]
+Homepage = "https://github.com/abhinavgautam01/resend-sdk"
+Repository = "https://github.com/abhinavgautam01/resend-sdk"
+Issues = "https://github.com/abhinavgautam01/resend-sdk/issues"
+
+# ONE package. core/entity/feature/utility were previously top-level packages;
+# those names are real PyPI distributions and common scratch filenames, and
+# Python searches the working directory first, so any of them beside the
+# caller silently shadowed the SDK's own. They now live inside
+# resend_sdk/ where nothing can reach them.
+[tool.setuptools.packages.find]
+include = ["resend_sdk*"]
+
+# Ship the PEP 561 py.typed marker(s) so the inline type hints reach consumers.
+[tool.setuptools.package-data]
+"*" = ["py.typed"]

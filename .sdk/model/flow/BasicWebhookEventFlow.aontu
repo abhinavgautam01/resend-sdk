@@ -1,0 +1,46 @@
+# BasicWebhookEventFlow
+
+main: kit: flow: BasicWebhookEventFlow:
+{
+  entity: "webhook_event",
+  kind: "basic",
+  name: "BasicWebhookEventFlow",
+  step: [
+    {
+      i: {
+        ref: "webhook_event_ref01"
+      }
+
+      m: {
+        event_id: "event01",
+        webhook_id: "webhook01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "webhook_event_ref01",
+        srcdatavar: "webhook_event_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "webhook_event01",
+        webhook_id: "webhook01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-webhook_event_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWebhookEventFlow"
+}

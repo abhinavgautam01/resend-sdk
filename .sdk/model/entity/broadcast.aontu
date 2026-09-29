@@ -1,0 +1,425 @@
+# Entity: broadcast
+
+main: kit: entity: broadcast: {
+
+  alias: field: {}
+
+  fields: {
+    audience_id: {
+      de: true
+      h: "Audience Id"
+      n: "audience_id"
+      r: false
+      sh: "Deprecated: use `segment_id` instead."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "Timestamp indicating when the broadcast was created."
+      t: "`$STRING`"
+    }
+    from: {
+      h: "From"
+      n: "from"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The email address of the sender."
+      t: "`$STRING`"
+    }
+    html: {
+      h: "Html"
+      n: "html"
+      r: false
+      sh: "The HTML version of the broadcast content."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the broadcast."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Name of the broadcast."
+      t: "`$STRING`"
+    }
+    preview_text: {
+      h: "Preview Text"
+      n: "preview_text"
+      r: false
+      sh: "The preview text of the email."
+      t: "`$STRING`"
+    }
+    reply_to: {
+      h: "Reply To"
+      n: "reply_to"
+      r: false
+      sh: "The email addresses to which replies should be sent."
+      t: "`$ARRAY`"
+    }
+    scheduled_at: {
+      h: "Scheduled At"
+      n: "scheduled_at"
+      r: false
+      sh: "Timestamp indicating when the broadcast is scheduled to be sent."
+      t: "`$STRING`"
+    }
+    segment_id: {
+      h: "Segment Id"
+      n: "segment_id"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "Unique identifier of the segment this broadcast will be sent to."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    send: {
+      h: "Send"
+      n: "send"
+      r: false
+      sh: "Whether to send the broadcast immediately or keep it as a draft."
+      t: "`$BOOLEAN`"
+    }
+    sent_at: {
+      h: "Sent At"
+      n: "sent_at"
+      r: false
+      sh: "Timestamp indicating when the broadcast was sent."
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "The status of the broadcast."
+      t: "`$STRING`"
+    }
+    subject: {
+      h: "Subject"
+      n: "subject"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The subject line of the email."
+      t: "`$STRING`"
+    }
+    text: {
+      h: "Text"
+      n: "text"
+      r: false
+      sh: "The plain text version of the broadcast content."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    topic_id: {
+      h: "Topic Id"
+      n: "topic_id"
+      r: false
+      sh: "The topic ID that the broadcast is scoped to."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "broadcast"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /broadcasts/{id}/cancel"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/broadcasts/{id}/cancel"
+          q: {
+            "$action": "cancel"
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "broadcasts"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "cancel"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /broadcasts/{id}/duplicate"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/broadcasts/{id}/duplicate"
+          q: {
+            "$action": "duplicate"
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "broadcasts"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "duplicate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /broadcasts/{id}/send"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/broadcasts/{id}/send"
+          q: {
+            "$action": "send"
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "broadcasts"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "send"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /broadcasts"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/broadcasts"
+          s: [
+            {
+              lit: "broadcasts"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /broadcasts"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "after"
+                or: "after"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "before"
+                or: "before"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/broadcasts"
+          q: {
+            exist: [
+              "after"
+              "before"
+              "limit"
+            ]
+          }
+          s: [
+            {
+              lit: "broadcasts"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /broadcasts/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/broadcasts/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "broadcasts"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

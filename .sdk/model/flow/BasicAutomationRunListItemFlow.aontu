@@ -1,0 +1,26 @@
+# BasicAutomationRunListItemFlow
+
+main: kit: flow: BasicAutomationRunListItemFlow:
+{
+  entity: "automation_run_list_item",
+  kind: "basic",
+  name: "BasicAutomationRunListItemFlow",
+  step: [
+    {
+      m: {
+        automation_id: "automation01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "automation_run_list_item_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAutomationRunListItemFlow"
+}

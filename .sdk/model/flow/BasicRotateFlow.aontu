@@ -1,0 +1,22 @@
+# BasicRotateFlow
+
+main: kit: flow: BasicRotateFlow:
+{
+  entity: "rotate",
+  kind: "basic",
+  name: "BasicRotateFlow",
+  step: [
+    {
+      i: {
+        ref: "rotate_ref01"
+      }
+
+      m: {
+        webhook_id: "webhook01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicRotateFlow"
+}

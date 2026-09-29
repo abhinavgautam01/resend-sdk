@@ -1,0 +1,52 @@
+{
+  "existing": {
+    "update_contact_response_success": {
+      "UPDATE_CONTACT_RESPONSE_SUCCESS00": {
+        "email": "s46",
+        "first_name": "s47",
+        "id": "UPDATE_CONTACT_RESPONSE_SUCCESS00",
+        "last_name": "s49",
+        "object": "s4a",
+        "properties": {},
+        "unsubscribed": true
+      },
+      "UPDATE_CONTACT_RESPONSE_SUCCESS01": {
+        "email": "s8c",
+        "first_name": "s8d",
+        "id": "UPDATE_CONTACT_RESPONSE_SUCCESS01",
+        "last_name": "s8f",
+        "object": "s90",
+        "properties": {},
+        "unsubscribed": true
+      },
+      "UPDATE_CONTACT_RESPONSE_SUCCESS02": {
+        "email": "sd2",
+        "first_name": "sd3",
+        "id": "UPDATE_CONTACT_RESPONSE_SUCCESS02",
+        "last_name": "sd5",
+        "object": "sd6",
+        "properties": {},
+        "unsubscribed": true
+      }
+    }
+  },
+  "new": {
+    "update_contact_response_success": {
+      "update_contact_response_success_ref01": {
+        "email": "s118",
+        "first_name": "s119",
+        "last_name": "s11b",
+        "object": "s11c",
+        "properties": {},
+        "unsubscribed": true
+      }
+    }
+  },
+  "requests": {
+    "PATCH /contacts/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

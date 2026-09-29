@@ -1,0 +1,278 @@
+# Entity: domain_claim
+
+main: kit: entity: domain_claim: {
+
+  alias: field: {}
+
+  fields: {
+    blocked_reason: {
+      h: "Blocked Reason"
+      n: "blocked_reason"
+      r: false
+      sh: "Why the claim is currently blocked, if applicable."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    click_tracking: {
+      h: "Click Tracking"
+      n: "click_tracking"
+      r: false
+      sh: "Track clicks within the body of each HTML email."
+      t: "`$BOOLEAN`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The date and time the claim was created."
+      t: "`$STRING`"
+    }
+    custom_return_path: {
+      h: "Custom Return Path"
+      n: "custom_return_path"
+      r: false
+      sh: "For advanced use cases, choose a subdomain for the Return-Path address."
+      t: "`$STRING`"
+    }
+    domain_id: {
+      h: "Domain Id"
+      n: "domain_id"
+      r: false
+      sh: "The ID of the placeholder domain created for the claim."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    expires_at: {
+      h: "Expires At"
+      n: "expires_at"
+      r: false
+      sh: "The date and time the claim expires if not verified."
+      t: "`$STRING`"
+    }
+    failure_reason: {
+      h: "Failure Reason"
+      n: "failure_reason"
+      r: false
+      sh: "Why the claim failed, if applicable."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the claim."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The name of the domain being claimed."
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The type of object."
+      t: "`$STRING`"
+    }
+    open_tracking: {
+      h: "Open Tracking"
+      n: "open_tracking"
+      r: false
+      sh: "Track the open rate of each email."
+      t: "`$BOOLEAN`"
+    }
+    record: {
+      h: "Record"
+      n: "record"
+      r: false
+      sh: "The TXT record to add to your DNS to prove ownership of the claimed domain."
+      t: "`$OBJECT`"
+    }
+    region: {
+      h: "Region"
+      n: "region"
+      r: false
+      sh: "The region where the claimed domain will send from."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "The status of the claim."
+      t: "`$STRING`"
+    }
+    tracking_subdomain: {
+      h: "Tracking Subdomain"
+      n: "tracking_subdomain"
+      r: false
+      sh: "The subdomain to use for click and open tracking."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "domain_claim"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /domains/{domain_id}/claim/verify"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain_id"
+                or: "domain_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/domains/{domain_id}/claim/verify"
+          q: {
+            exist: [
+              "domain_id"
+            ]
+          }
+          s: [
+            {
+              lit: "domains"
+            }
+            {
+              var: "domain_id"
+            }
+            {
+              lit: "claim"
+            }
+            {
+              lit: "verify"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /domains/claim"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/domains/claim"
+          s: [
+            {
+              lit: "domains"
+            }
+            {
+              lit: "claim"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /domains/{domain_id}/claim"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "domain_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/domains/{domain_id}/claim"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              domain_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "domains"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "claim"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.domain")]
+  ]
+
+}

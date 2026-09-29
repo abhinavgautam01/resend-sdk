@@ -1,0 +1,64 @@
+{
+  "existing": {
+    "list_received_email": {
+      "LIST_RECEIVED_EMAIL00": {
+        "attachments": [],
+        "bcc": "s65",
+        "cc": "s66",
+        "created_at": "s67",
+        "from": "s68",
+        "id": "LIST_RECEIVED_EMAIL00",
+        "message_id": "MESSAGE01",
+        "reply_to": "s6b",
+        "subject": "s6c",
+        "to": []
+      },
+      "LIST_RECEIVED_EMAIL01": {
+        "attachments": [],
+        "bcc": "sc9",
+        "cc": "sca",
+        "created_at": "scb",
+        "from": "scc",
+        "id": "LIST_RECEIVED_EMAIL01",
+        "message_id": "MESSAGE01",
+        "reply_to": "scf",
+        "subject": "sd0",
+        "to": []
+      },
+      "LIST_RECEIVED_EMAIL02": {
+        "attachments": [],
+        "bcc": "s12d",
+        "cc": "s12e",
+        "created_at": "s12f",
+        "from": "s130",
+        "id": "LIST_RECEIVED_EMAIL02",
+        "message_id": "MESSAGE01",
+        "reply_to": "s133",
+        "subject": "s134",
+        "to": []
+      }
+    }
+  },
+  "new": {
+    "list_received_email": {
+      "list_received_email_ref01": {
+        "attachments": [],
+        "bcc": "s191",
+        "cc": "s192",
+        "created_at": "s193",
+        "from": "s194",
+        "message_id": "MESSAGE01",
+        "reply_to": "s197",
+        "subject": "s198",
+        "to": []
+      }
+    }
+  },
+  "requests": {
+    "GET /emails/receiving": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

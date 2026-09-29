@@ -1,0 +1,27 @@
+{
+  "existing": {
+    "remove_event": {
+      "REMOVE_EVENT00": {
+        "id": "REMOVE_EVENT00"
+      },
+      "REMOVE_EVENT01": {
+        "id": "REMOVE_EVENT01"
+      },
+      "REMOVE_EVENT02": {
+        "id": "REMOVE_EVENT02"
+      }
+    }
+  },
+  "new": {
+    "remove_event": {
+      "remove_event_ref01": {}
+    }
+  },
+  "requests": {
+    "DELETE /events/{identifier}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

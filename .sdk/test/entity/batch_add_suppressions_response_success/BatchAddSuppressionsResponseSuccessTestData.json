@@ -1,0 +1,32 @@
+{
+  "existing": {
+    "batch_add_suppressions_response_success": {
+      "BATCH_ADD_SUPPRESSIONS_RESPONSE_SUCCESS00": {
+        "emails": [],
+        "id": "BATCH_ADD_SUPPRESSIONS_RESPONSE_SUCCESS00"
+      },
+      "BATCH_ADD_SUPPRESSIONS_RESPONSE_SUCCESS01": {
+        "emails": [],
+        "id": "BATCH_ADD_SUPPRESSIONS_RESPONSE_SUCCESS01"
+      },
+      "BATCH_ADD_SUPPRESSIONS_RESPONSE_SUCCESS02": {
+        "emails": [],
+        "id": "BATCH_ADD_SUPPRESSIONS_RESPONSE_SUCCESS02"
+      }
+    }
+  },
+  "new": {
+    "batch_add_suppressions_response_success": {
+      "batch_add_suppressions_response_success_ref01": {
+        "emails": []
+      }
+    }
+  },
+  "requests": {
+    "POST /suppressions/batch/add": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,94 @@
+# Entity: rotate
+
+main: kit: entity: rotate: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      fo: "uuid"
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the webhook."
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The type of object."
+      t: "`$STRING`"
+    }
+    signing_secret: {
+      h: "Signing Secret"
+      n: "signing_secret"
+      r: false
+      sh: "The new secret key used to verify webhook payloads."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "rotate"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /webhooks/{webhook_id}/signing-secret/rotate"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "webhook_id"
+                or: "webhook_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/webhooks/{webhook_id}/signing-secret/rotate"
+          q: {
+            exist: [
+              "webhook_id"
+            ]
+          }
+          s: [
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "webhook_id"
+            }
+            {
+              lit: "signing-secret"
+            }
+            {
+              lit: "rotate"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.webhook")]
+  ]
+
+}

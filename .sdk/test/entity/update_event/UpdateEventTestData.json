@@ -1,0 +1,36 @@
+{
+  "existing": {
+    "update_event": {
+      "UPDATE_EVENT00": {
+        "id": "UPDATE_EVENT00",
+        "object": "s1f",
+        "schema": "s20"
+      },
+      "UPDATE_EVENT01": {
+        "id": "UPDATE_EVENT01",
+        "object": "s3d",
+        "schema": "s3e"
+      },
+      "UPDATE_EVENT02": {
+        "id": "UPDATE_EVENT02",
+        "object": "s5b",
+        "schema": "s5c"
+      }
+    }
+  },
+  "new": {
+    "update_event": {
+      "update_event_ref01": {
+        "object": "s79",
+        "schema": "s7a"
+      }
+    }
+  },
+  "requests": {
+    "PATCH /events/{identifier}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

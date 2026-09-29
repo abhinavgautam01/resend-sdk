@@ -1,0 +1,23 @@
+# BasicAddContactToSegmentResponseSuccessFlow
+
+main: kit: flow: BasicAddContactToSegmentResponseSuccessFlow:
+{
+  entity: "add_contact_to_segment_response_success",
+  kind: "basic",
+  name: "BasicAddContactToSegmentResponseSuccessFlow",
+  step: [
+    {
+      i: {
+        ref: "add_contact_to_segment_response_success_ref01"
+      }
+
+      m: {
+        contact_id: "contact01",
+        segment_id: "segment01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicAddContactToSegmentResponseSuccessFlow"
+}

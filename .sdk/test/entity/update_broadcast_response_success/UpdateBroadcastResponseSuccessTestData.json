@@ -1,0 +1,72 @@
+{
+  "existing": {
+    "update_broadcast_response_success": {
+      "UPDATE_BROADCAST_RESPONSE_SUCCESS00": {
+        "audience_id": "AUDIENCE01",
+        "from": "s79",
+        "html": "s7a",
+        "id": "UPDATE_BROADCAST_RESPONSE_SUCCESS00",
+        "name": "s7c",
+        "object": "s7d",
+        "preview_text": "s7e",
+        "reply_to": [],
+        "segment_id": "SEGMENT01",
+        "subject": "s81",
+        "text": "s82",
+        "topic_id": "TOPIC01"
+      },
+      "UPDATE_BROADCAST_RESPONSE_SUCCESS01": {
+        "audience_id": "AUDIENCE01",
+        "from": "sf1",
+        "html": "sf2",
+        "id": "UPDATE_BROADCAST_RESPONSE_SUCCESS01",
+        "name": "sf4",
+        "object": "sf5",
+        "preview_text": "sf6",
+        "reply_to": [],
+        "segment_id": "SEGMENT01",
+        "subject": "sf9",
+        "text": "sfa",
+        "topic_id": "TOPIC01"
+      },
+      "UPDATE_BROADCAST_RESPONSE_SUCCESS02": {
+        "audience_id": "AUDIENCE01",
+        "from": "s169",
+        "html": "s16a",
+        "id": "UPDATE_BROADCAST_RESPONSE_SUCCESS02",
+        "name": "s16c",
+        "object": "s16d",
+        "preview_text": "s16e",
+        "reply_to": [],
+        "segment_id": "SEGMENT01",
+        "subject": "s171",
+        "text": "s172",
+        "topic_id": "TOPIC01"
+      }
+    }
+  },
+  "new": {
+    "update_broadcast_response_success": {
+      "update_broadcast_response_success_ref01": {
+        "audience_id": "AUDIENCE01",
+        "from": "s1e1",
+        "html": "s1e2",
+        "name": "s1e4",
+        "object": "s1e5",
+        "preview_text": "s1e6",
+        "reply_to": [],
+        "segment_id": "SEGMENT01",
+        "subject": "s1e9",
+        "text": "s1ea",
+        "topic_id": "TOPIC01"
+      }
+    }
+  },
+  "requests": {
+    "PATCH /broadcasts/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

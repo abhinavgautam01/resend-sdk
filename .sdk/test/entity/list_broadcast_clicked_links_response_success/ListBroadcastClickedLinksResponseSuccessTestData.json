@@ -1,0 +1,43 @@
+{
+  "existing": {
+    "list_broadcast_clicked_links_response_success": {
+      "LIST_BROADCAST_CLICKED_LINKS_RESPONSE_SUCCESS00": {
+        "clicks": 40,
+        "id": "LIST_BROADCAST_CLICKED_LINKS_RESPONSE_SUCCESS00",
+        "unique_clicks": 42,
+        "url": "s2b",
+        "broadcast_id": "BROADCAST01"
+      },
+      "LIST_BROADCAST_CLICKED_LINKS_RESPONSE_SUCCESS01": {
+        "clicks": 80,
+        "id": "LIST_BROADCAST_CLICKED_LINKS_RESPONSE_SUCCESS01",
+        "unique_clicks": 82,
+        "url": "s53",
+        "broadcast_id": "BROADCAST01"
+      },
+      "LIST_BROADCAST_CLICKED_LINKS_RESPONSE_SUCCESS02": {
+        "clicks": 120,
+        "id": "LIST_BROADCAST_CLICKED_LINKS_RESPONSE_SUCCESS02",
+        "unique_clicks": 122,
+        "url": "s7b",
+        "broadcast_id": "BROADCAST01"
+      }
+    }
+  },
+  "new": {
+    "list_broadcast_clicked_links_response_success": {
+      "list_broadcast_clicked_links_response_success_ref01": {
+        "clicks": 160,
+        "unique_clicks": 162,
+        "url": "sa3"
+      }
+    }
+  },
+  "requests": {
+    "GET /broadcasts/{id}/clicked-links": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

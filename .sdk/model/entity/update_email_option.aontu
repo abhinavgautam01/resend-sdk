@@ -1,0 +1,68 @@
+# Entity: update_email_option
+
+main: kit: entity: update_email_option: {
+
+  alias: field: {}
+
+  fields: {
+    scheduled_at: {
+      h: "Scheduled At"
+      n: "scheduled_at"
+      r: false
+      sh: "Schedule email to be sent later."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "update_email_option"
+  op: {
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PATCH /emails/{email_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "email_id"
+                or: "email_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/emails/{email_id}"
+          q: {
+            exist: [
+              "email_id"
+            ]
+          }
+          s: [
+            {
+              lit: "emails"
+            }
+            {
+              var: "email_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.email")]
+  ]
+
+}

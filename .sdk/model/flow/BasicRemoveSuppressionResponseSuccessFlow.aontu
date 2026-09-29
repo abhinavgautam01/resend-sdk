@@ -1,0 +1,59 @@
+# BasicRemoveSuppressionResponseSuccessFlow
+
+main: kit: flow: BasicRemoveSuppressionResponseSuccessFlow:
+{
+  entity: "remove_suppression_response_success",
+  kind: "basic",
+  name: "BasicRemoveSuppressionResponseSuccessFlow",
+  step: [
+    {
+      i: {
+        ref: "remove_suppression_response_success_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "remove_suppression_response_success_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "remove_suppression_response_success_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "remove_suppression_response_success01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "remove_suppression_response_success_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRemoveSuppressionResponseSuccessFlow"
+}

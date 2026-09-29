@@ -1,0 +1,52 @@
+# BasicEmailFlow
+
+main: kit: flow: BasicEmailFlow:
+{
+  entity: "email",
+  kind: "basic",
+  name: "BasicEmailFlow",
+  step: [
+    {
+      i: {
+        ref: "email_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "email_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "email_ref01",
+        srcdatavar: "email_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "email01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-email_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEmailFlow"
+}

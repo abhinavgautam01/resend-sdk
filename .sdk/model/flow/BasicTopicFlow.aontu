@@ -1,0 +1,32 @@
+# BasicTopicFlow
+
+main: kit: flow: BasicTopicFlow:
+{
+  entity: "topic",
+  kind: "basic",
+  name: "BasicTopicFlow",
+  step: [
+    {
+      i: {
+        ref: "topic_ref01",
+        srcdatavar: "topic_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "topic01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-topic_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTopicFlow"
+}

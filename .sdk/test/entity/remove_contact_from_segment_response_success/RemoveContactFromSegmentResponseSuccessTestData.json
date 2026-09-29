@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "remove_contact_from_segment_response_success": {
+      "REMOVE_CONTACT_FROM_SEGMENT_RESPONSE_SUCCESS00": {
+        "contact_id": "CONTACT01",
+        "segment_id": "SEGMENT01",
+        "id": "REMOVE_CONTACT_FROM_SEGMENT_RESPONSE_SUCCESS00"
+      },
+      "REMOVE_CONTACT_FROM_SEGMENT_RESPONSE_SUCCESS01": {
+        "contact_id": "CONTACT01",
+        "segment_id": "SEGMENT01",
+        "id": "REMOVE_CONTACT_FROM_SEGMENT_RESPONSE_SUCCESS01"
+      },
+      "REMOVE_CONTACT_FROM_SEGMENT_RESPONSE_SUCCESS02": {
+        "contact_id": "CONTACT01",
+        "segment_id": "SEGMENT01",
+        "id": "REMOVE_CONTACT_FROM_SEGMENT_RESPONSE_SUCCESS02"
+      }
+    }
+  },
+  "new": {
+    "remove_contact_from_segment_response_success": {
+      "remove_contact_from_segment_response_success_ref01": {}
+    }
+  },
+  "requests": {
+    "DELETE /contacts/{contact_id}/segments/{segment_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

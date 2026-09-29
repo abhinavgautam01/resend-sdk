@@ -1,0 +1,51 @@
+{
+  "existing": {
+    "list_broadcast_recipients_response_success": {
+      "LIST_BROADCAST_RECIPIENTS_RESPONSE_SUCCESS00": {
+        "bounce_type": "s3c",
+        "clicked_links": [],
+        "contact_id": "CONTACT01",
+        "count": 63,
+        "email": "s40",
+        "id": "LIST_BROADCAST_RECIPIENTS_RESPONSE_SUCCESS00",
+        "broadcast_id": "BROADCAST01"
+      },
+      "LIST_BROADCAST_RECIPIENTS_RESPONSE_SUCCESS01": {
+        "bounce_type": "s78",
+        "clicked_links": [],
+        "contact_id": "CONTACT01",
+        "count": 123,
+        "email": "s7c",
+        "id": "LIST_BROADCAST_RECIPIENTS_RESPONSE_SUCCESS01",
+        "broadcast_id": "BROADCAST01"
+      },
+      "LIST_BROADCAST_RECIPIENTS_RESPONSE_SUCCESS02": {
+        "bounce_type": "sb4",
+        "clicked_links": [],
+        "contact_id": "CONTACT01",
+        "count": 183,
+        "email": "sb8",
+        "id": "LIST_BROADCAST_RECIPIENTS_RESPONSE_SUCCESS02",
+        "broadcast_id": "BROADCAST01"
+      }
+    }
+  },
+  "new": {
+    "list_broadcast_recipients_response_success": {
+      "list_broadcast_recipients_response_success_ref01": {
+        "bounce_type": "sf0",
+        "clicked_links": [],
+        "contact_id": "CONTACT01",
+        "count": 243,
+        "email": "sf4"
+      }
+    }
+  },
+  "requests": {
+    "GET /broadcasts/{id}/recipients": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "existing": {
+    "topic": {
+      "TOPIC00": {
+        "created_at": "s46",
+        "default_subscription": "s47",
+        "description": "s48",
+        "id": "TOPIC00",
+        "name": "s4a",
+        "object": "s4b",
+        "visibility": "s4c"
+      },
+      "TOPIC01": {
+        "created_at": "s8c",
+        "default_subscription": "s8d",
+        "description": "s8e",
+        "id": "TOPIC01",
+        "name": "s90",
+        "object": "s91",
+        "visibility": "s92"
+      },
+      "TOPIC02": {
+        "created_at": "sd2",
+        "default_subscription": "sd3",
+        "description": "sd4",
+        "id": "TOPIC02",
+        "name": "sd6",
+        "object": "sd7",
+        "visibility": "sd8"
+      }
+    }
+  },
+  "new": {
+    "topic": {
+      "topic_ref01": {
+        "created_at": "s118",
+        "default_subscription": "s119",
+        "description": "s11a",
+        "name": "s11c",
+        "object": "s11d",
+        "visibility": "s11e"
+      }
+    }
+  },
+  "requests": {
+    "GET /topics/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "webhook": {
+      "WEBHOOK00": {
+        "created_at": "s46",
+        "endpoint": "s47",
+        "events": "s48",
+        "id": "WEBHOOK00",
+        "object": "s4a",
+        "signing_secret": "s4b",
+        "status": "s4c"
+      },
+      "WEBHOOK01": {
+        "created_at": "s8c",
+        "endpoint": "s8d",
+        "events": "s8e",
+        "id": "WEBHOOK01",
+        "object": "s90",
+        "signing_secret": "s91",
+        "status": "s92"
+      },
+      "WEBHOOK02": {
+        "created_at": "sd2",
+        "endpoint": "sd3",
+        "events": "sd4",
+        "id": "WEBHOOK02",
+        "object": "sd6",
+        "signing_secret": "sd7",
+        "status": "sd8"
+      }
+    }
+  },
+  "new": {
+    "webhook": {
+      "webhook_ref01": {
+        "created_at": "s118",
+        "endpoint": "s119",
+        "events": "s11a",
+        "object": "s11c",
+        "signing_secret": "s11d",
+        "status": "s11e"
+      }
+    }
+  },
+  "requests": {
+    "GET /webhooks/{webhook_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /webhooks/{webhook_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

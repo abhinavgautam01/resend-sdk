@@ -1,0 +1,40 @@
+# BasicDomainClaimFlow
+
+main: kit: flow: BasicDomainClaimFlow:
+{
+  entity: "domain_claim",
+  kind: "basic",
+  name: "BasicDomainClaimFlow",
+  step: [
+    {
+      i: {
+        ref: "domain_claim_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "domain_claim_ref01",
+        srcdatavar: "domain_claim_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "domain_claim01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-domain_claim_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDomainClaimFlow"
+}

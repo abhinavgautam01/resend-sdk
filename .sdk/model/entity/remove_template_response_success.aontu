@@ -1,0 +1,248 @@
+# Entity: remove_template_response_success
+
+main: kit: entity: remove_template_response_success: {
+
+  alias: field: {}
+
+  fields: {
+    alias: {
+      h: "Alias"
+      n: "alias"
+      r: false
+      sh: "The alias of the template."
+      t: "`$STRING`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "Timestamp indicating when the template was created."
+      t: "`$STRING`"
+    }
+    from: {
+      h: "From"
+      n: "from"
+      r: false
+      sh: "Sender email address."
+      t: "`$STRING`"
+    }
+    html: {
+      h: "Html"
+      n: "html"
+      r: true
+      sh: "The HTML version of the template."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the template."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      op: {
+        list: {
+          req: false
+          type: "`$STRING`"
+        }
+      }
+      r: true
+      sh: "The name of the template."
+      t: "`$STRING`"
+    }
+    published_at: {
+      h: "Published At"
+      n: "published_at"
+      r: false
+      sh: "Timestamp indicating when the template was published."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    reply_to: {
+      h: "Reply To"
+      n: "reply_to"
+      r: false
+      sh: "Reply-to email addresses."
+      t: "`$ARRAY`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "The publication status of the template."
+      t: "`$STRING`"
+    }
+    subject: {
+      h: "Subject"
+      n: "subject"
+      r: false
+      sh: "Email subject."
+      t: "`$STRING`"
+    }
+    text: {
+      h: "Text"
+      n: "text"
+      r: false
+      sh: "The plain text version of the template."
+      t: "`$STRING`"
+    }
+    updated_at: {
+      h: "Updated At"
+      n: "updated_at"
+      r: false
+      sh: "Timestamp indicating when the template was last updated."
+      t: "`$STRING`"
+    }
+    variables: {
+      h: "Variables"
+      n: "variables"
+      r: false
+      t: "`$ARRAY`"
+      union: {
+        branches: 5
+        count: 1
+        depth: 3
+      }
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "remove_template_response_success"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /templates"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/templates"
+          s: [
+            {
+              lit: "templates"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /templates"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "after"
+                or: "after"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "before"
+                or: "before"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/templates"
+          q: {
+            exist: [
+              "after"
+              "before"
+              "limit"
+            ]
+          }
+          s: [
+            {
+              lit: "templates"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /templates/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/templates/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "templates"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

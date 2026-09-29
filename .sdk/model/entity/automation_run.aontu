@@ -1,0 +1,146 @@
+# Entity: automation_run
+
+main: kit: entity: automation_run: {
+
+  alias: field: {}
+
+  fields: {
+    completed_at: {
+      h: "Completed At"
+      n: "completed_at"
+      r: false
+      sh: "The date and time the run completed."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The date and time the run was created."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the automation run."
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "Type of the response object."
+      t: "`$STRING`"
+    }
+    started_at: {
+      h: "Started At"
+      n: "started_at"
+      r: false
+      sh: "The date and time the run started."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "The current status of the automation run."
+      t: "`$STRING`"
+    }
+    steps: {
+      h: "Steps"
+      n: "steps"
+      r: false
+      sh: "The steps executed in this run, sorted in graph order."
+      t: "`$ARRAY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "automation_run"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /automations/{automation_id}/runs/{run_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "automation_id"
+                or: "automation_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "run_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/automations/{automation_id}/runs/{run_id}"
+          q: {
+            exist: [
+              "automation_id"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              run_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "automations"
+            }
+            {
+              var: "automation_id"
+            }
+            {
+              lit: "runs"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.automation")]
+  ]
+
+}

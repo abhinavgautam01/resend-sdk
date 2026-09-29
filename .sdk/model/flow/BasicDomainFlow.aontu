@@ -1,0 +1,81 @@
+# BasicDomainFlow
+
+main: kit: flow: BasicDomainFlow:
+{
+  entity: "domain",
+  kind: "basic",
+  name: "BasicDomainFlow",
+  step: [
+    {
+      i: {
+        ref: "domain_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "domain_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "domain_ref01",
+        srcdatavar: "domain_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "domain01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-domain_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "domain_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "domain01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "domain_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDomainFlow"
+}

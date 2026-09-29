@@ -1,0 +1,112 @@
+# Entity: update_contact_response_success
+
+main: kit: entity: update_contact_response_success: {
+
+  alias: field: {}
+
+  fields: {
+    email: {
+      h: "Email"
+      n: "email"
+      r: false
+      sh: "Email address of the contact."
+      t: "`$STRING`"
+    }
+    first_name: {
+      h: "First Name"
+      n: "first_name"
+      r: false
+      sh: "First name of the contact."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the updated contact."
+      t: "`$STRING`"
+    }
+    last_name: {
+      h: "Last Name"
+      n: "last_name"
+      r: false
+      sh: "Last name of the contact."
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "Type of the response object."
+      t: "`$STRING`"
+    }
+    properties: {
+      h: "Properties"
+      n: "properties"
+      r: false
+      sh: "A map of custom property keys and values to update."
+      t: "`$OBJECT`"
+    }
+    unsubscribed: {
+      h: "Unsubscribed"
+      n: "unsubscribed"
+      r: false
+      sh: "The Contact's global subscription status."
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "update_contact_response_success"
+  op: {
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PATCH /contacts/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/contacts/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

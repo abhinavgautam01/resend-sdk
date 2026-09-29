@@ -1,0 +1,283 @@
+
+import {
+  names,
+  cmp,
+  each,
+  getx,
+
+  Project,
+  Folder,
+
+  Main,
+  Entity,
+  Feature,
+  Readme,
+  AgentGuide,
+  Test,
+
+  SdkGenError,
+
+} from '@voxgig/sdkgen'
+
+import {
+  KIT
+} from '@voxgig/apidef'
+
+
+import { transform, select, ismap } from '@voxgig/struct'
+
+import { PointUtil, Content } from 'jostraca'
+
+
+import { Top } from './Top'
+import { BuildSDK } from './BuildSDK'
+import { rootPlan } from './RootPlan'
+
+
+const {
+  buildPoints,
+  SerialPoint,
+} = PointUtil
+
+
+
+
+const Root = cmp(function Root(props: any) {
+  const { model, ctx$ } = props
+
+  ctx$.util = ctx$.util || {}
+  ctx$.util.makeFlow = makeFlow
+
+  model.const = { name: model.name }
+  names(model.const, model.name)
+  model.const.year = new Date().getFullYear()
+
+  ctx$.model = model
+
+  const target = model.main[KIT].target || {}
+  const feature = model.main[KIT].feature || {}
+  const entity = model.main[KIT].entity || {}
+
+  ctx$.log.debug({
+    point: 'cmp-root', target, entity, feature, note: [
+      '\ntarget: \n' + Object.keys(target).map(s => '  ' + s).join('\n'),
+      '\nentity:\n' + Object.keys(entity).map(s => '  ' + s).join('\n'),
+      '\nfeature:\n' + Object.keys(feature).map(s => '  ' + s).join('\n'),
+    ].join('\n')
+  })
+
+  names(model, model.name)
+
+  // Standard Replacements
+  ctx$.stdrep = {}
+  names(ctx$.stdrep, model.Name, 'Project' + 'Name')
+
+  const plan = rootPlan(model.main[KIT], SdkGenError)
+
+  Project({}, () => {
+
+    if (plan.top) {
+      Top({})
+    }
+
+    if (plan.build) {
+      BuildSDK({})
+    }
+
+    each(target, (target: any) => {
+      const place = plan.place[target.name]
+
+      if (null == place) {
+        return
+      }
+
+      names(target, target.name)
+
+      if ('root' === place) {
+        targetPhases(target, entity, feature)
+      }
+      else {
+        Folder({ name: target.name }, () => {
+          targetPhases(target, entity, feature)
+        })
+      }
+    })
+
+  })
+})
+
+
+function targetPhases(target: any, entity: any, feature: any) {
+  const phase = target.phase || {}
+  const phaseActive = (name: string): boolean =>
+    false !== (phase[name] && phase[name].active)
+
+  if (phaseActive('entity')) {
+    each(entity).filter((entity: any) => entity.active).map((entity: any) => {
+      names(entity, entity.name)
+      Entity({ target, entity })
+    })
+  }
+
+  if (phaseActive('feature')) {
+    each(feature).filter((feature: any) => feature.active).map((feature: any) => {
+      names(feature, feature.name)
+      Feature({ target, feature })
+    })
+  }
+
+  Main({ target })
+
+  if (phaseActive('readme')) {
+    Readme({ target })
+  }
+
+  // Per-target agent guides: <lang>/AGENTS.md + CLAUDE.md, and (driven
+  // internally by AgentGuide) a guide per active feature under
+  // <lang>/src/feature/<name>/. Placement mirrors Readme.
+  if (phaseActive('agentguide')) {
+    AgentGuide({ target })
+  }
+
+  if (phaseActive('test')) {
+    Test({ target })
+  }
+}
+
+
+function makeFlow(def: any, data: any, stepMakers: Record<string, any>) {
+
+  const steps: any = {}
+  each(stepMakers, (n: any) => {
+    if ('function' === typeof n.val$) {
+      steps[n.key$] = (id: any, pdef: any) => makeFlowStep(id(), pdef, n.val$)
+    }
+    else if ('string' === typeof n.val$) {
+      steps[n.key$] = (id: any, pdef: any) => makeFlowStep(id(), pdef, (sd: any, pctx: any) => {
+        Content({
+          indent: pctx.data.indent,
+          extra: {
+            __stepdef: sd
+          },
+        }, n.val$)
+      })
+    }
+    else if (Array.isArray(n)) {
+      steps[(n as any).key$] =
+        (id: any, pdef: any) => makeFlowStep(id(), pdef, (sd: any, pctx: any) => {
+          const extra = {
+            __stepdef: sd
+          }
+          for (let tmdef of n) {
+            let tmtxt
+            if ('string' === typeof tmdef) {
+              tmtxt = tmdef
+            }
+            else if (Array.isArray(tmdef)) {
+              let pass = true
+              let cond = tmdef[0]
+              tmtxt = tmdef[1]
+
+              if ('string' === typeof cond) {
+                pass = (null != getx(extra, tmdef[0]) || null != getx(pctx.data.model, tmdef[0]))
+              }
+              else if (ismap(cond)) {
+                let children = [{ ...pctx.data.model, ...extra }]
+                let found = select(
+                  children,
+                  cond
+                )
+                pass = 0 < found.length
+              }
+
+              if (!pass) {
+                tmtxt = tmdef[2]
+              }
+            }
+            else if ('function' === typeof tmdef) {
+              tmdef(sd, pctx)
+            }
+
+            if (null != tmtxt) {
+              Content({
+                indent: pctx.data.indent,
+                extra,
+              }, tmtxt)
+            }
+          }
+        })
+    }
+  })
+
+  each(def.step, (step: any) => {
+    names(step, step.entity, 'entity')
+  })
+
+
+  const spec = transform(def, {
+    p: ['`$EACH`', 'step', {
+      k: 'FlowStep',
+      a: '`.`',
+      p: [
+        { k: 'GetEntity', a: '`...`' },
+        { k: 'EntityMatch', a: '`...`' },
+        { k: 'EntityData', a: '`...`' },
+        { k: 'EntityAction', a: '`...`' },
+        { k: 'ExplainAction', a: '`...`' },
+        { k: 'ValidateAction', a: '`...`' },
+      ]
+    }]
+  })
+
+  const rootPoint = buildPoints(spec, steps) as any
+
+  data = data || {}
+  data.step = {}
+
+  rootPoint.direct(data)
+}
+
+
+function makeFlowStep(
+  id: string,
+  pdef: any,
+  before: any,
+  after?: any,
+  _parent?: any
+): any {
+
+  class FlowStep extends SerialPoint {
+    pdef: any
+
+    constructor(id: string, pdef: any) {
+      super(id)
+      this.pdef = pdef
+    }
+
+    async run(pctx: any): Promise<void> {
+      const stepdef = pdef.a
+      if (stepdef.ref) {
+        const refstep = pctx.data.step[stepdef.ref]
+        stepdef.kind = refstep.kind
+        stepdef.entity = refstep.entity
+        stepdef._ref = stepdef.ref
+        delete stepdef.ref
+      }
+
+      before.call(this, stepdef, pctx)
+      super.run(pctx)
+      after && after.call(this, stepdef, pctx)
+    }
+  }
+
+  return new FlowStep(id, pdef)
+}
+
+
+
+
+export {
+  KIT,
+  Root,
+}
+

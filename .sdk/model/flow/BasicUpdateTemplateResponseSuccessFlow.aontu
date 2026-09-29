@@ -1,0 +1,29 @@
+# BasicUpdateTemplateResponseSuccessFlow
+
+main: kit: flow: BasicUpdateTemplateResponseSuccessFlow:
+{
+  entity: "update_template_response_success",
+  kind: "basic",
+  name: "BasicUpdateTemplateResponseSuccessFlow",
+  step: [
+    {
+      i: {
+        ref: "update_template_response_success_ref01",
+        srcdatavar: "update_template_response_success_ref01_data",
+        suffix: "_up0",
+        textfield: "alias"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-update_template_response_success_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUpdateTemplateResponseSuccessFlow"
+}

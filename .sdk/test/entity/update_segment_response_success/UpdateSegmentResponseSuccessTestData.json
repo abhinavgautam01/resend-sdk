@@ -1,0 +1,36 @@
+{
+  "existing": {
+    "update_segment_response_success": {
+      "UPDATE_SEGMENT_RESPONSE_SUCCESS00": {
+        "id": "UPDATE_SEGMENT_RESPONSE_SUCCESS00",
+        "name": "s1f",
+        "object": "s20"
+      },
+      "UPDATE_SEGMENT_RESPONSE_SUCCESS01": {
+        "id": "UPDATE_SEGMENT_RESPONSE_SUCCESS01",
+        "name": "s3d",
+        "object": "s3e"
+      },
+      "UPDATE_SEGMENT_RESPONSE_SUCCESS02": {
+        "id": "UPDATE_SEGMENT_RESPONSE_SUCCESS02",
+        "name": "s5b",
+        "object": "s5c"
+      }
+    }
+  },
+  "new": {
+    "update_segment_response_success": {
+      "update_segment_response_success_ref01": {
+        "name": "s79",
+        "object": "s7a"
+      }
+    }
+  },
+  "requests": {
+    "PATCH /segments/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

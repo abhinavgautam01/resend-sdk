@@ -1,0 +1,48 @@
+{
+  "existing": {
+    "suppression": {
+      "SUPPRESSION00": {
+        "created_at": "s3c",
+        "email": "s3d",
+        "id": "SUPPRESSION00",
+        "object": "s3f",
+        "origin": "s40",
+        "source_id": "SOURCE01"
+      },
+      "SUPPRESSION01": {
+        "created_at": "s78",
+        "email": "s79",
+        "id": "SUPPRESSION01",
+        "object": "s7b",
+        "origin": "s7c",
+        "source_id": "SOURCE01"
+      },
+      "SUPPRESSION02": {
+        "created_at": "sb4",
+        "email": "sb5",
+        "id": "SUPPRESSION02",
+        "object": "sb7",
+        "origin": "sb8",
+        "source_id": "SOURCE01"
+      }
+    }
+  },
+  "new": {
+    "suppression": {
+      "suppression_ref01": {
+        "created_at": "sf0",
+        "email": "sf1",
+        "object": "sf3",
+        "origin": "sf4",
+        "source_id": "SOURCE01"
+      }
+    }
+  },
+  "requests": {
+    "GET /suppressions/{suppression}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

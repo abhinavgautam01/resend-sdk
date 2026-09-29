@@ -1,0 +1,48 @@
+{
+  "existing": {
+    "segment": {
+      "SEGMENT00": {
+        "audience_id": "AUDIENCE01",
+        "created_at": "s3d",
+        "filter": {},
+        "id": "SEGMENT00",
+        "name": "s40",
+        "object": "s41"
+      },
+      "SEGMENT01": {
+        "audience_id": "AUDIENCE01",
+        "created_at": "s79",
+        "filter": {},
+        "id": "SEGMENT01",
+        "name": "s7c",
+        "object": "s7d"
+      },
+      "SEGMENT02": {
+        "audience_id": "AUDIENCE01",
+        "created_at": "sb5",
+        "filter": {},
+        "id": "SEGMENT02",
+        "name": "sb8",
+        "object": "sb9"
+      }
+    }
+  },
+  "new": {
+    "segment": {
+      "segment_ref01": {
+        "audience_id": "AUDIENCE01",
+        "created_at": "sf1",
+        "filter": {},
+        "name": "sf4",
+        "object": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "GET /segments/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

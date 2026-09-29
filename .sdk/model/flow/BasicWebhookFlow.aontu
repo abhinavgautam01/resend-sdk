@@ -1,0 +1,32 @@
+# BasicWebhookFlow
+
+main: kit: flow: BasicWebhookFlow:
+{
+  entity: "webhook",
+  kind: "basic",
+  name: "BasicWebhookFlow",
+  step: [
+    {
+      i: {
+        ref: "webhook_ref01",
+        srcdatavar: "webhook_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "webhook01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-webhook_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWebhookFlow"
+}

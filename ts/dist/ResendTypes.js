@@ -1,0 +1,9 @@
+"use strict";
+// Typed models for the Resend SDK.
+//
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
+// canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
+// @voxgig/apidef VALID_CANON). Do not edit by hand.
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=ResendTypes.js.map

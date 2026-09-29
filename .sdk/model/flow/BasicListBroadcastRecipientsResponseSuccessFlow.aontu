@@ -1,0 +1,26 @@
+# BasicListBroadcastRecipientsResponseSuccessFlow
+
+main: kit: flow: BasicListBroadcastRecipientsResponseSuccessFlow:
+{
+  entity: "list_broadcast_recipients_response_success",
+  kind: "basic",
+  name: "BasicListBroadcastRecipientsResponseSuccessFlow",
+  step: [
+    {
+      m: {
+        broadcast_id: "broadcast01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "list_broadcast_recipients_response_success_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicListBroadcastRecipientsResponseSuccessFlow"
+}

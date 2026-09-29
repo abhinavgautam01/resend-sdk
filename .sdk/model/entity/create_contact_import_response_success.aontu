@@ -1,0 +1,42 @@
+# Entity: create_contact_import_response_success
+
+main: kit: entity: create_contact_import_response_success: {
+
+  alias: field: {}
+
+  name: "create_contact_import_response_success"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /contacts/imports"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/contacts/imports"
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              lit: "imports"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

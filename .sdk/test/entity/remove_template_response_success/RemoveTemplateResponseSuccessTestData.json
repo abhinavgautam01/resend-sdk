@@ -1,0 +1,86 @@
+{
+  "existing": {
+    "remove_template_response_success": {
+      "REMOVE_TEMPLATE_RESPONSE_SUCCESS00": {
+        "alias": "s82",
+        "created_at": "s83",
+        "from": "s84",
+        "html": "s85",
+        "id": "REMOVE_TEMPLATE_RESPONSE_SUCCESS00",
+        "name": "s87",
+        "published_at": "s88",
+        "reply_to": [],
+        "status": "s8a",
+        "subject": "s8b",
+        "text": "s8c",
+        "updated_at": "s8d",
+        "variables": []
+      },
+      "REMOVE_TEMPLATE_RESPONSE_SUCCESS01": {
+        "alias": "s104",
+        "created_at": "s105",
+        "from": "s106",
+        "html": "s107",
+        "id": "REMOVE_TEMPLATE_RESPONSE_SUCCESS01",
+        "name": "s109",
+        "published_at": "s10a",
+        "reply_to": [],
+        "status": "s10c",
+        "subject": "s10d",
+        "text": "s10e",
+        "updated_at": "s10f",
+        "variables": []
+      },
+      "REMOVE_TEMPLATE_RESPONSE_SUCCESS02": {
+        "alias": "s186",
+        "created_at": "s187",
+        "from": "s188",
+        "html": "s189",
+        "id": "REMOVE_TEMPLATE_RESPONSE_SUCCESS02",
+        "name": "s18b",
+        "published_at": "s18c",
+        "reply_to": [],
+        "status": "s18e",
+        "subject": "s18f",
+        "text": "s190",
+        "updated_at": "s191",
+        "variables": []
+      }
+    }
+  },
+  "new": {
+    "remove_template_response_success": {
+      "remove_template_response_success_ref01": {
+        "alias": "s208",
+        "created_at": "s209",
+        "from": "s20a",
+        "html": "s20b",
+        "name": "s20d",
+        "published_at": "s20e",
+        "reply_to": [],
+        "status": "s210",
+        "subject": "s211",
+        "text": "s212",
+        "updated_at": "s213",
+        "variables": []
+      }
+    }
+  },
+  "requests": {
+    "POST /templates": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /templates": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /templates/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "existing": {
+    "domain": {
+      "DOMAIN00": {
+        "capabilities": {},
+        "click_tracking": false,
+        "created_at": "s84",
+        "custom_return_path": "s85",
+        "id": "DOMAIN00",
+        "name": "s87",
+        "object": "s88",
+        "open_tracking": false,
+        "records": [],
+        "region": "s8b",
+        "status": "s8c",
+        "tls": "s8d",
+        "tracking_subdomain": "s8e"
+      },
+      "DOMAIN01": {
+        "capabilities": {},
+        "click_tracking": false,
+        "created_at": "s106",
+        "custom_return_path": "s107",
+        "id": "DOMAIN01",
+        "name": "s109",
+        "object": "s10a",
+        "open_tracking": false,
+        "records": [],
+        "region": "s10d",
+        "status": "s10e",
+        "tls": "s10f",
+        "tracking_subdomain": "s110"
+      },
+      "DOMAIN02": {
+        "capabilities": {},
+        "click_tracking": false,
+        "created_at": "s188",
+        "custom_return_path": "s189",
+        "id": "DOMAIN02",
+        "name": "s18b",
+        "object": "s18c",
+        "open_tracking": false,
+        "records": [],
+        "region": "s18f",
+        "status": "s190",
+        "tls": "s191",
+        "tracking_subdomain": "s192"
+      }
+    }
+  },
+  "new": {
+    "domain": {
+      "domain_ref01": {
+        "capabilities": {},
+        "click_tracking": false,
+        "created_at": "s20a",
+        "custom_return_path": "s20b",
+        "name": "s20d",
+        "object": "s20e",
+        "open_tracking": false,
+        "records": [],
+        "region": "s211",
+        "status": "s212",
+        "tls": "s213",
+        "tracking_subdomain": "s214"
+      }
+    }
+  },
+  "requests": {
+    "POST /domains/{domain_id}/verify": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /domains": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domains": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domains/{domain_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /domains/{domain_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

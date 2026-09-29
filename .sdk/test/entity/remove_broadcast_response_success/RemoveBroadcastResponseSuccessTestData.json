@@ -1,0 +1,27 @@
+{
+  "existing": {
+    "remove_broadcast_response_success": {
+      "REMOVE_BROADCAST_RESPONSE_SUCCESS00": {
+        "id": "REMOVE_BROADCAST_RESPONSE_SUCCESS00"
+      },
+      "REMOVE_BROADCAST_RESPONSE_SUCCESS01": {
+        "id": "REMOVE_BROADCAST_RESPONSE_SUCCESS01"
+      },
+      "REMOVE_BROADCAST_RESPONSE_SUCCESS02": {
+        "id": "REMOVE_BROADCAST_RESPONSE_SUCCESS02"
+      }
+    }
+  },
+  "new": {
+    "remove_broadcast_response_success": {
+      "remove_broadcast_response_success_ref01": {}
+    }
+  },
+  "requests": {
+    "DELETE /broadcasts/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

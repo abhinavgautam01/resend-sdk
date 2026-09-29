@@ -1,0 +1,140 @@
+# Entity: o_auth_grant
+
+main: kit: entity: o_auth_grant: {
+
+  alias: field: {}
+
+  fields: {
+    client: {
+      h: "Client"
+      n: "client"
+      r: false
+      sh: "The OAuth client the grant was issued to."
+      t: "`$OBJECT`"
+    }
+    client_id: {
+      h: "Client Id"
+      n: "client_id"
+      r: false
+      sh: "The ID of the OAuth client the grant was issued to."
+      t: "`$STRING`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The date and time the OAuth grant was created."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the OAuth grant."
+      t: "`$STRING`"
+    }
+    revoked_at: {
+      h: "Revoked At"
+      n: "revoked_at"
+      r: false
+      sh: "The date and time the OAuth grant was revoked, or null if it is still active."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    revoked_reason: {
+      h: "Revoked Reason"
+      n: "revoked_reason"
+      r: false
+      sh: "The reason the OAuth grant was revoked, or null if it is still active."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    scopes: {
+      h: "Scopes"
+      n: "scopes"
+      r: false
+      sh: "The scopes granted to the OAuth client."
+      t: "`$ARRAY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "o_auth_grant"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /oauth/grants"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "after"
+                or: "after"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "before"
+                or: "before"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/oauth/grants"
+          q: {
+            exist: [
+              "after"
+              "before"
+              "limit"
+            ]
+          }
+          s: [
+            {
+              lit: "oauth"
+            }
+            {
+              lit: "grants"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,115 @@
+# Entity: update_domain_response_success
+
+main: kit: entity: update_domain_response_success: {
+
+  alias: field: {}
+
+  fields: {
+    capabilities: {
+      h: "Capabilities"
+      n: "capabilities"
+      r: false
+      sh: "Configure the domain capabilities for sending and receiving emails."
+      t: "`$OBJECT`"
+    }
+    click_tracking: {
+      h: "Click Tracking"
+      n: "click_tracking"
+      r: false
+      sh: "Track clicks within the body of each HTML email."
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the updated domain."
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The object type representing the updated domain."
+      t: "`$STRING`"
+    }
+    open_tracking: {
+      h: "Open Tracking"
+      n: "open_tracking"
+      r: false
+      sh: "Track the open rate of each email."
+      t: "`$BOOLEAN`"
+    }
+    tls: {
+      h: "Tls"
+      n: "tls"
+      r: false
+      sh: "enforced | opportunistic."
+      t: "`$STRING`"
+    }
+    tracking_subdomain: {
+      h: "Tracking Subdomain"
+      n: "tracking_subdomain"
+      r: false
+      sh: "The subdomain to use for click and open tracking."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "update_domain_response_success"
+  op: {
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PATCH /domains/{domain_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "domain_id"
+                or: "domain_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/domains/{domain_id}"
+          q: {
+            exist: [
+              "domain_id"
+            ]
+          }
+          s: [
+            {
+              lit: "domains"
+            }
+            {
+              var: "domain_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.domain")]
+  ]
+
+}

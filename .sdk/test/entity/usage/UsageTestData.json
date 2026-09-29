@@ -1,0 +1,64 @@
+{
+  "existing": {
+    "usage": {
+      "USAGE00": {
+        "ai_credits": {},
+        "automation_runs": {},
+        "broadcasts": {},
+        "contacts": {},
+        "domains": {},
+        "emails": {},
+        "object": "s60",
+        "rate_limit": {},
+        "segments": {},
+        "id": "USAGE00"
+      },
+      "USAGE01": {
+        "ai_credits": {},
+        "automation_runs": {},
+        "broadcasts": {},
+        "contacts": {},
+        "domains": {},
+        "emails": {},
+        "object": "sba",
+        "rate_limit": {},
+        "segments": {},
+        "id": "USAGE01"
+      },
+      "USAGE02": {
+        "ai_credits": {},
+        "automation_runs": {},
+        "broadcasts": {},
+        "contacts": {},
+        "domains": {},
+        "emails": {},
+        "object": "s114",
+        "rate_limit": {},
+        "segments": {},
+        "id": "USAGE02"
+      }
+    }
+  },
+  "new": {
+    "usage": {
+      "usage_ref01": {
+        "ai_credits": {},
+        "automation_runs": {},
+        "broadcasts": {},
+        "contacts": {},
+        "domains": {},
+        "emails": {},
+        "object": "s16e",
+        "rate_limit": {},
+        "segments": {}
+      }
+    }
+  },
+  "requests": {
+    "GET /usage": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

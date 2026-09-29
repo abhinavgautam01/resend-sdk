@@ -1,0 +1,52 @@
+# BasicEventFlow
+
+main: kit: flow: BasicEventFlow:
+{
+  entity: "event",
+  kind: "basic",
+  name: "BasicEventFlow",
+  step: [
+    {
+      i: {
+        ref: "event_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "event_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "event_ref01",
+        srcdatavar: "event_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "event01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-event_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEventFlow"
+}

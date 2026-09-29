@@ -1,0 +1,9 @@
+# BasicRevokeOAuthGrantFlow
+
+main: kit: flow: BasicRevokeOAuthGrantFlow:
+{
+  entity: "revoke_o_auth_grant",
+  kind: "basic",
+  name: "BasicRevokeOAuthGrantFlow",
+  "key$": "BasicRevokeOAuthGrantFlow"
+}

@@ -1,0 +1,209 @@
+# Entity: received_email
+
+main: kit: entity: received_email: {
+
+  alias: field: {}
+
+  fields: {
+    attachments: {
+      h: "Attachments"
+      n: "attachments"
+      r: false
+      sh: "Array of attachments."
+      t: "`$ARRAY`"
+    }
+    bcc: {
+      h: "Bcc"
+      n: "bcc"
+      r: false
+      sh: "The BCC recipients."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    cc: {
+      h: "Cc"
+      n: "cc"
+      r: false
+      sh: "The CC recipients."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "Timestamp when the email was received."
+      t: "`$STRING`"
+    }
+    from: {
+      h: "From"
+      n: "from"
+      r: false
+      sh: "The sender email address."
+      t: "`$STRING`"
+    }
+    headers: {
+      h: "Headers"
+      n: "headers"
+      r: false
+      sh: "The email headers."
+      t: [
+        "`$ONE`"
+        [
+          "`$OBJECT`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    html: {
+      h: "Html"
+      n: "html"
+      r: false
+      sh: "The HTML content of the email."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    id: {
+      fo: "uuid"
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the received email."
+      t: "`$STRING`"
+    }
+    message_id: {
+      h: "Message Id"
+      n: "message_id"
+      r: false
+      sh: "The unique message ID from the email headers."
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The type of object."
+      t: "`$STRING`"
+    }
+    received_for: {
+      h: "Received For"
+      n: "received_for"
+      r: false
+      sh: "The recipient addresses the email was forwarded for, taken from the `for` clause of the message's `Received` headers."
+      t: "`$ARRAY`"
+    }
+    reply_to: {
+      h: "Reply To"
+      n: "reply_to"
+      r: false
+      sh: "The reply-to addresses."
+      t: [
+        "`$ONE`"
+        [
+          "`$ARRAY`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    subject: {
+      h: "Subject"
+      n: "subject"
+      r: false
+      sh: "The email subject."
+      t: "`$STRING`"
+    }
+    text: {
+      h: "Text"
+      n: "text"
+      r: false
+      sh: "The plain text content of the email."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    to: {
+      h: "To"
+      n: "to"
+      r: false
+      sh: "The recipient email addresses."
+      t: "`$ARRAY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "received_email"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /emails/receiving/{email_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "email_id"
+                or: "email_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/emails/receiving/{email_id}"
+          q: {
+            exist: [
+              "email_id"
+            ]
+          }
+          s: [
+            {
+              lit: "emails"
+            }
+            {
+              lit: "receiving"
+            }
+            {
+              var: "email_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

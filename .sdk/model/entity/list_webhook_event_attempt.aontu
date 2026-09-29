@@ -1,0 +1,130 @@
+# Entity: list_webhook_event_attempt
+
+main: kit: entity: list_webhook_event_attempt: {
+
+  alias: field: {}
+
+  fields: {
+    http_status_code: {
+      h: "Http Status Code"
+      n: "http_status_code"
+      r: false
+      sh: "The HTTP status code returned by the webhook endpoint."
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the webhook event attempt."
+      t: "`$STRING`"
+    }
+    response: {
+      h: "Response"
+      n: "response"
+      r: false
+      sh: "The response body returned by the webhook endpoint."
+      t: "`$STRING`"
+    }
+    sent_at: {
+      fo: "date-time"
+      h: "Sent At"
+      n: "sent_at"
+      r: false
+      sh: "Timestamp indicating when the attempt was sent."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "list_webhook_event_attempt"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /webhooks/{webhook_id}/events/{event_id}/attempts"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "event_id"
+                or: "event_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "webhook_id"
+                or: "webhook_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "after"
+                or: "after"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/webhooks/{webhook_id}/events/{event_id}/attempts"
+          q: {
+            exist: [
+              "after"
+              "event_id"
+              "limit"
+              "webhook_id"
+            ]
+          }
+          s: [
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "webhook_id"
+            }
+            {
+              lit: "events"
+            }
+            {
+              var: "event_id"
+            }
+            {
+              lit: "attempts"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.webhook") path("$.main.kit.entity.event")]
+  ]
+
+}

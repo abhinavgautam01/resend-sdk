@@ -1,0 +1,27 @@
+{
+  "existing": {
+    "remove_contact_response_success": {
+      "REMOVE_CONTACT_RESPONSE_SUCCESS00": {
+        "id": "REMOVE_CONTACT_RESPONSE_SUCCESS00"
+      },
+      "REMOVE_CONTACT_RESPONSE_SUCCESS01": {
+        "id": "REMOVE_CONTACT_RESPONSE_SUCCESS01"
+      },
+      "REMOVE_CONTACT_RESPONSE_SUCCESS02": {
+        "id": "REMOVE_CONTACT_RESPONSE_SUCCESS02"
+      }
+    }
+  },
+  "new": {
+    "remove_contact_response_success": {
+      "remove_contact_response_success_ref01": {}
+    }
+  },
+  "requests": {
+    "DELETE /contacts/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

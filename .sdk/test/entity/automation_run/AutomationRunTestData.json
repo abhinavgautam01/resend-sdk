@@ -1,0 +1,55 @@
+{
+  "existing": {
+    "automation_run": {
+      "AUTOMATION_RUN00": {
+        "completed_at": "s46",
+        "created_at": "s47",
+        "id": "AUTOMATION_RUN00",
+        "object": "s49",
+        "started_at": "s4a",
+        "status": "s4b",
+        "steps": [],
+        "automation_id": "AUTOMATION01"
+      },
+      "AUTOMATION_RUN01": {
+        "completed_at": "s8c",
+        "created_at": "s8d",
+        "id": "AUTOMATION_RUN01",
+        "object": "s8f",
+        "started_at": "s90",
+        "status": "s91",
+        "steps": [],
+        "automation_id": "AUTOMATION01"
+      },
+      "AUTOMATION_RUN02": {
+        "completed_at": "sd2",
+        "created_at": "sd3",
+        "id": "AUTOMATION_RUN02",
+        "object": "sd5",
+        "started_at": "sd6",
+        "status": "sd7",
+        "steps": [],
+        "automation_id": "AUTOMATION01"
+      }
+    }
+  },
+  "new": {
+    "automation_run": {
+      "automation_run_ref01": {
+        "completed_at": "s118",
+        "created_at": "s119",
+        "object": "s11b",
+        "started_at": "s11c",
+        "status": "s11d",
+        "steps": []
+      }
+    }
+  },
+  "requests": {
+    "GET /automations/{automation_id}/runs/{run_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

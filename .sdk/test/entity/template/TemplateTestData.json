@@ -1,0 +1,98 @@
+{
+  "existing": {
+    "template": {
+      "TEMPLATE00": {
+        "alias": "sa0",
+        "created_at": "sa1",
+        "current_version_id": "CURRENT_VERSION01",
+        "from": "sa3",
+        "has_unpublished_versions": true,
+        "html": "sa5",
+        "id": "TEMPLATE00",
+        "name": "sa7",
+        "object": "sa8",
+        "published_at": "sa9",
+        "reply_to": "saa",
+        "status": "sab",
+        "subject": "sac",
+        "text": "sad",
+        "updated_at": "sae",
+        "variables": []
+      },
+      "TEMPLATE01": {
+        "alias": "s140",
+        "created_at": "s141",
+        "current_version_id": "CURRENT_VERSION01",
+        "from": "s143",
+        "has_unpublished_versions": true,
+        "html": "s145",
+        "id": "TEMPLATE01",
+        "name": "s147",
+        "object": "s148",
+        "published_at": "s149",
+        "reply_to": "s14a",
+        "status": "s14b",
+        "subject": "s14c",
+        "text": "s14d",
+        "updated_at": "s14e",
+        "variables": []
+      },
+      "TEMPLATE02": {
+        "alias": "s1e0",
+        "created_at": "s1e1",
+        "current_version_id": "CURRENT_VERSION01",
+        "from": "s1e3",
+        "has_unpublished_versions": true,
+        "html": "s1e5",
+        "id": "TEMPLATE02",
+        "name": "s1e7",
+        "object": "s1e8",
+        "published_at": "s1e9",
+        "reply_to": "s1ea",
+        "status": "s1eb",
+        "subject": "s1ec",
+        "text": "s1ed",
+        "updated_at": "s1ee",
+        "variables": []
+      }
+    }
+  },
+  "new": {
+    "template": {
+      "template_ref01": {
+        "alias": "s280",
+        "created_at": "s281",
+        "current_version_id": "CURRENT_VERSION01",
+        "from": "s283",
+        "has_unpublished_versions": true,
+        "html": "s285",
+        "name": "s287",
+        "object": "s288",
+        "published_at": "s289",
+        "reply_to": "s28a",
+        "status": "s28b",
+        "subject": "s28c",
+        "text": "s28d",
+        "updated_at": "s28e",
+        "variables": []
+      }
+    }
+  },
+  "requests": {
+    "POST /templates/{id}/duplicate": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /templates/{id}/publish": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /templates/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

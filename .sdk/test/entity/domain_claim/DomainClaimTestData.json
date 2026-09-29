@@ -1,0 +1,94 @@
+{
+  "existing": {
+    "domain_claim": {
+      "DOMAIN_CLAIM00": {
+        "blocked_reason": "s96",
+        "click_tracking": false,
+        "created_at": "s98",
+        "custom_return_path": "s99",
+        "domain_id": "DOMAIN01",
+        "expires_at": "s9b",
+        "failure_reason": "s9c",
+        "id": "DOMAIN_CLAIM00",
+        "name": "s9e",
+        "object": "s9f",
+        "open_tracking": true,
+        "record": {},
+        "region": "sa2",
+        "status": "sa3",
+        "tracking_subdomain": "sa4"
+      },
+      "DOMAIN_CLAIM01": {
+        "blocked_reason": "s12c",
+        "click_tracking": false,
+        "created_at": "s12e",
+        "custom_return_path": "s12f",
+        "domain_id": "DOMAIN01",
+        "expires_at": "s131",
+        "failure_reason": "s132",
+        "id": "DOMAIN_CLAIM01",
+        "name": "s134",
+        "object": "s135",
+        "open_tracking": true,
+        "record": {},
+        "region": "s138",
+        "status": "s139",
+        "tracking_subdomain": "s13a"
+      },
+      "DOMAIN_CLAIM02": {
+        "blocked_reason": "s1c2",
+        "click_tracking": false,
+        "created_at": "s1c4",
+        "custom_return_path": "s1c5",
+        "domain_id": "DOMAIN01",
+        "expires_at": "s1c7",
+        "failure_reason": "s1c8",
+        "id": "DOMAIN_CLAIM02",
+        "name": "s1ca",
+        "object": "s1cb",
+        "open_tracking": true,
+        "record": {},
+        "region": "s1ce",
+        "status": "s1cf",
+        "tracking_subdomain": "s1d0"
+      }
+    }
+  },
+  "new": {
+    "domain_claim": {
+      "domain_claim_ref01": {
+        "blocked_reason": "s258",
+        "click_tracking": false,
+        "created_at": "s25a",
+        "custom_return_path": "s25b",
+        "domain_id": "DOMAIN01",
+        "expires_at": "s25d",
+        "failure_reason": "s25e",
+        "name": "s260",
+        "object": "s261",
+        "open_tracking": true,
+        "record": {},
+        "region": "s264",
+        "status": "s265",
+        "tracking_subdomain": "s266"
+      }
+    }
+  },
+  "requests": {
+    "POST /domains/{domain_id}/claim/verify": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /domains/claim": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /domains/{domain_id}/claim": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

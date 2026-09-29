@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "emails_metric": {
+      "EMAILS_METRIC00": {
+        "broadcast_id": "BROADCAST01",
+        "broadcast_name": "s3d",
+        "domain_id": "DOMAIN01",
+        "domain_name": "s3f",
+        "email_id": "EMAIL01",
+        "period": "s41"
+      },
+      "EMAILS_METRIC01": {
+        "broadcast_id": "BROADCAST01",
+        "broadcast_name": "s79",
+        "domain_id": "DOMAIN01",
+        "domain_name": "s7b",
+        "email_id": "EMAIL01",
+        "period": "s7d"
+      },
+      "EMAILS_METRIC02": {
+        "broadcast_id": "BROADCAST01",
+        "broadcast_name": "sb5",
+        "domain_id": "DOMAIN01",
+        "domain_name": "sb7",
+        "email_id": "EMAIL01",
+        "period": "sb9"
+      }
+    }
+  },
+  "new": {
+    "emails_metric": {
+      "emails_metric_ref01": {
+        "broadcast_id": "BROADCAST01",
+        "broadcast_name": "sf1",
+        "domain_id": "DOMAIN01",
+        "domain_name": "sf3",
+        "email_id": "EMAIL01",
+        "period": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "GET /emails/metrics": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+# BasicRemoveAudienceResponseSuccessFlow
+
+main: kit: flow: BasicRemoveAudienceResponseSuccessFlow:
+{
+  entity: "remove_audience_response_success",
+  kind: "basic",
+  name: "BasicRemoveAudienceResponseSuccessFlow",
+  "key$": "BasicRemoveAudienceResponseSuccessFlow"
+}

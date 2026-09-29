@@ -1,0 +1,153 @@
+# Entity: automation_run_list_item
+
+main: kit: entity: automation_run_list_item: {
+
+  alias: field: {}
+
+  fields: {
+    completed_at: {
+      h: "Completed At"
+      n: "completed_at"
+      r: false
+      sh: "The date and time the run completed."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The date and time the run was created."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the automation run."
+      t: "`$STRING`"
+    }
+    started_at: {
+      h: "Started At"
+      n: "started_at"
+      r: false
+      sh: "The date and time the run started."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "The current status of the automation run."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "automation_run_list_item"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /automations/{automation_id}/runs"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "automation_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "after"
+                or: "after"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "before"
+                or: "before"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "status"
+                or: "status"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/automations/{automation_id}/runs"
+          q: {
+            "$action": "runs"
+            exist: [
+              "after"
+              "before"
+              "id"
+              "limit"
+              "status"
+            ]
+          }
+          r: {
+            param: {
+              automation_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "automations"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "runs"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,44 @@
+{
+  "existing": {
+    "update_topic_response_success": {
+      "UPDATE_TOPIC_RESPONSE_SUCCESS00": {
+        "description": "s32",
+        "id": "UPDATE_TOPIC_RESPONSE_SUCCESS00",
+        "name": "s34",
+        "object": "s35",
+        "visibility": "s36"
+      },
+      "UPDATE_TOPIC_RESPONSE_SUCCESS01": {
+        "description": "s64",
+        "id": "UPDATE_TOPIC_RESPONSE_SUCCESS01",
+        "name": "s66",
+        "object": "s67",
+        "visibility": "s68"
+      },
+      "UPDATE_TOPIC_RESPONSE_SUCCESS02": {
+        "description": "s96",
+        "id": "UPDATE_TOPIC_RESPONSE_SUCCESS02",
+        "name": "s98",
+        "object": "s99",
+        "visibility": "s9a"
+      }
+    }
+  },
+  "new": {
+    "update_topic_response_success": {
+      "update_topic_response_success_ref01": {
+        "description": "sc8",
+        "name": "sca",
+        "object": "scb",
+        "visibility": "scc"
+      }
+    }
+  },
+  "requests": {
+    "PATCH /topics/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

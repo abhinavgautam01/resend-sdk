@@ -1,0 +1,148 @@
+# Entity: update_broadcast_response_success
+
+main: kit: entity: update_broadcast_response_success: {
+
+  alias: field: {}
+
+  fields: {
+    audience_id: {
+      de: true
+      h: "Audience Id"
+      n: "audience_id"
+      r: false
+      sh: "Use `segment_id` instead."
+      t: "`$STRING`"
+    }
+    from: {
+      h: "From"
+      n: "from"
+      r: false
+      sh: "The email address of the sender."
+      t: "`$STRING`"
+    }
+    html: {
+      h: "Html"
+      n: "html"
+      r: false
+      sh: "The HTML version of the message."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the broadcast."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Name of the broadcast."
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The object type of the response."
+      t: "`$STRING`"
+    }
+    preview_text: {
+      h: "Preview Text"
+      n: "preview_text"
+      r: false
+      sh: "The preview text of the email."
+      t: "`$STRING`"
+    }
+    reply_to: {
+      h: "Reply To"
+      n: "reply_to"
+      r: false
+      sh: "The email addresses to which replies should be sent."
+      t: "`$ARRAY`"
+    }
+    segment_id: {
+      h: "Segment Id"
+      n: "segment_id"
+      r: false
+      sh: "Unique identifier of the segment this broadcast will be sent to."
+      t: "`$STRING`"
+    }
+    subject: {
+      h: "Subject"
+      n: "subject"
+      r: false
+      sh: "The subject line of the email."
+      t: "`$STRING`"
+    }
+    text: {
+      h: "Text"
+      n: "text"
+      r: false
+      sh: "The plain text version of the message."
+      t: "`$STRING`"
+    }
+    topic_id: {
+      h: "Topic Id"
+      n: "topic_id"
+      r: false
+      sh: "The topic ID that the broadcast will be scoped to."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "update_broadcast_response_success"
+  op: {
+    update: {
+      name: "update"
+      points: [
+        {
+          co: {
+            id: "PATCH /broadcasts/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "PATCH"
+          o: "/broadcasts/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "broadcasts"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,128 @@
+# Entity: list_broadcast_clicked_links_response_success
+
+main: kit: entity: list_broadcast_clicked_links_response_success: {
+
+  alias: field: {}
+
+  fields: {
+    clicks: {
+      h: "Clicks"
+      n: "clicks"
+      r: false
+      sh: "Total number of clicks on this URL."
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "An opaque cursor for this row, used only for pagination."
+      t: "`$STRING`"
+    }
+    unique_clicks: {
+      h: "Unique Clicks"
+      n: "unique_clicks"
+      r: false
+      sh: "Number of unique clicks on this URL."
+      t: "`$INTEGER`"
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      r: false
+      sh: "The URL that was clicked."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "list_broadcast_clicked_links_response_success"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /broadcasts/{id}/clicked-links"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "broadcast_id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "after"
+                or: "after"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "before"
+                or: "before"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/broadcasts/{id}/clicked-links"
+          q: {
+            exist: [
+              "after"
+              "before"
+              "broadcast_id"
+              "limit"
+            ]
+          }
+          r: {
+            param: {
+              id: "broadcast_id"
+            }
+          }
+          s: [
+            {
+              lit: "broadcasts"
+            }
+            {
+              var: "broadcast_id"
+            }
+            {
+              lit: "clicked-links"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.broadcast")]
+  ]
+
+}

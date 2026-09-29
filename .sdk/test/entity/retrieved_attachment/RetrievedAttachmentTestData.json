@@ -1,0 +1,71 @@
+{
+  "existing": {
+    "retrieved_attachment": {
+      "RETRIEVED_ATTACHMENT00": {
+        "content_disposition": "s5a",
+        "content_id": "CONTENT01",
+        "content_type": "s5c",
+        "download_url": "s5d",
+        "expires_at": "s5e",
+        "filename": "s5f",
+        "id": "RETRIEVED_ATTACHMENT00",
+        "object": "s61",
+        "size": 98,
+        "email_id": "EMAIL01",
+        "receiving_id": "RECEIVING01"
+      },
+      "RETRIEVED_ATTACHMENT01": {
+        "content_disposition": "sb4",
+        "content_id": "CONTENT01",
+        "content_type": "sb6",
+        "download_url": "sb7",
+        "expires_at": "sb8",
+        "filename": "sb9",
+        "id": "RETRIEVED_ATTACHMENT01",
+        "object": "sbb",
+        "size": 188,
+        "email_id": "EMAIL01",
+        "receiving_id": "RECEIVING01"
+      },
+      "RETRIEVED_ATTACHMENT02": {
+        "content_disposition": "s10e",
+        "content_id": "CONTENT01",
+        "content_type": "s110",
+        "download_url": "s111",
+        "expires_at": "s112",
+        "filename": "s113",
+        "id": "RETRIEVED_ATTACHMENT02",
+        "object": "s115",
+        "size": 278,
+        "email_id": "EMAIL01",
+        "receiving_id": "RECEIVING01"
+      }
+    }
+  },
+  "new": {
+    "retrieved_attachment": {
+      "retrieved_attachment_ref01": {
+        "content_disposition": "s168",
+        "content_id": "CONTENT01",
+        "content_type": "s16a",
+        "download_url": "s16b",
+        "expires_at": "s16c",
+        "filename": "s16d",
+        "object": "s16f",
+        "size": 368
+      }
+    }
+  },
+  "requests": {
+    "GET /emails/{email_id}/attachments/{attachment_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /emails/receiving/{email_id}/attachments/{attachment_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

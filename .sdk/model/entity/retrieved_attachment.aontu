@@ -1,0 +1,210 @@
+# Entity: retrieved_attachment
+
+main: kit: entity: retrieved_attachment: {
+
+  alias: field: {}
+
+  fields: {
+    content_disposition: {
+      h: "Content Disposition"
+      n: "content_disposition"
+      r: false
+      sh: "How the attachment should be displayed."
+      t: "`$STRING`"
+    }
+    content_id: {
+      h: "Content Id"
+      n: "content_id"
+      r: false
+      sh: "The content ID for inline attachments."
+      t: "`$STRING`"
+    }
+    content_type: {
+      h: "Content Type"
+      n: "content_type"
+      r: false
+      sh: "The MIME type of the attachment."
+      t: "`$STRING`"
+    }
+    download_url: {
+      h: "Download Url"
+      n: "download_url"
+      r: false
+      sh: "Signed URL to download the attachment content."
+      t: "`$STRING`"
+    }
+    expires_at: {
+      fo: "date-time"
+      h: "Expires At"
+      n: "expires_at"
+      r: false
+      sh: "Timestamp when the download URL expires."
+      t: "`$STRING`"
+    }
+    filename: {
+      h: "Filename"
+      n: "filename"
+      r: false
+      sh: "The filename of the attachment."
+      t: "`$STRING`"
+    }
+    id: {
+      fo: "uuid"
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the attachment."
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The type of object."
+      t: "`$STRING`"
+    }
+    size: {
+      h: "Size"
+      n: "size"
+      r: false
+      sh: "Size of the attachment in bytes."
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "retrieved_attachment"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /emails/{email_id}/attachments/{attachment_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "email_id"
+                or: "email_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "id"
+                or: "attachment_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/emails/{email_id}/attachments/{attachment_id}"
+          q: {
+            exist: [
+              "email_id"
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              attachment_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "emails"
+            }
+            {
+              var: "email_id"
+            }
+            {
+              lit: "attachments"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /emails/receiving/{email_id}/attachments/{attachment_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "attachment_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "receiving_id"
+                or: "email_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/emails/receiving/{email_id}/attachments/{attachment_id}"
+          q: {
+            exist: [
+              "id"
+              "receiving_id"
+            ]
+          }
+          r: {
+            param: {
+              attachment_id: "id"
+              email_id: "receiving_id"
+            }
+          }
+          s: [
+            {
+              lit: "emails"
+            }
+            {
+              lit: "receiving"
+            }
+            {
+              var: "receiving_id"
+            }
+            {
+              lit: "attachments"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.email")]
+  ]
+
+}

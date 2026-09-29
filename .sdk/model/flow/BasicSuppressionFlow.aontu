@@ -1,0 +1,32 @@
+# BasicSuppressionFlow
+
+main: kit: flow: BasicSuppressionFlow:
+{
+  entity: "suppression",
+  kind: "basic",
+  name: "BasicSuppressionFlow",
+  step: [
+    {
+      i: {
+        ref: "suppression_ref01",
+        srcdatavar: "suppression_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "suppression01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-suppression_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSuppressionFlow"
+}

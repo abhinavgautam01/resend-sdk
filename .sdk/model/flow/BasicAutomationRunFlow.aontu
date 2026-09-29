@@ -1,0 +1,33 @@
+# BasicAutomationRunFlow
+
+main: kit: flow: BasicAutomationRunFlow:
+{
+  entity: "automation_run",
+  kind: "basic",
+  name: "BasicAutomationRunFlow",
+  step: [
+    {
+      i: {
+        ref: "automation_run_ref01",
+        srcdatavar: "automation_run_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        automation_id: "automation01",
+        id: "automation_run01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-automation_run_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAutomationRunFlow"
+}

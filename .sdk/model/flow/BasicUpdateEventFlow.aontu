@@ -1,0 +1,29 @@
+# BasicUpdateEventFlow
+
+main: kit: flow: BasicUpdateEventFlow:
+{
+  entity: "update_event",
+  kind: "basic",
+  name: "BasicUpdateEventFlow",
+  step: [
+    {
+      i: {
+        ref: "update_event_ref01",
+        srcdatavar: "update_event_ref01_data",
+        suffix: "_up0",
+        textfield: "object"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-update_event_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUpdateEventFlow"
+}

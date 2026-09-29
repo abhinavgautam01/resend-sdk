@@ -1,0 +1,9 @@
+# BasicRemoveBroadcastResponseSuccessFlow
+
+main: kit: flow: BasicRemoveBroadcastResponseSuccessFlow:
+{
+  entity: "remove_broadcast_response_success",
+  kind: "basic",
+  name: "BasicRemoveBroadcastResponseSuccessFlow",
+  "key$": "BasicRemoveBroadcastResponseSuccessFlow"
+}

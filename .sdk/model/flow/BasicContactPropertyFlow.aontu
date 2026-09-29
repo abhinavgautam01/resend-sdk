@@ -1,0 +1,52 @@
+# BasicContactPropertyFlow
+
+main: kit: flow: BasicContactPropertyFlow:
+{
+  entity: "contact_property",
+  kind: "basic",
+  name: "BasicContactPropertyFlow",
+  step: [
+    {
+      i: {
+        ref: "contact_property_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "contact_property_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "contact_property_ref01",
+        srcdatavar: "contact_property_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "contact_property01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-contact_property_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicContactPropertyFlow"
+}

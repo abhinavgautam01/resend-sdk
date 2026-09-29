@@ -1,0 +1,63 @@
+{
+  "existing": {
+    "webhook_event": {
+      "WEBHOOK_EVENT00": {
+        "created_at": "s46",
+        "id": "WEBHOOK_EVENT00",
+        "next_attempt_at": "s48",
+        "object": "s49",
+        "payload": {},
+        "status": "s4b",
+        "type": "s4c",
+        "event_id": "EVENT01",
+        "webhook_id": "WEBHOOK01"
+      },
+      "WEBHOOK_EVENT01": {
+        "created_at": "s8c",
+        "id": "WEBHOOK_EVENT01",
+        "next_attempt_at": "s8e",
+        "object": "s8f",
+        "payload": {},
+        "status": "s91",
+        "type": "s92",
+        "event_id": "EVENT01",
+        "webhook_id": "WEBHOOK01"
+      },
+      "WEBHOOK_EVENT02": {
+        "created_at": "sd2",
+        "id": "WEBHOOK_EVENT02",
+        "next_attempt_at": "sd4",
+        "object": "sd5",
+        "payload": {},
+        "status": "sd7",
+        "type": "sd8",
+        "event_id": "EVENT01",
+        "webhook_id": "WEBHOOK01"
+      }
+    }
+  },
+  "new": {
+    "webhook_event": {
+      "webhook_event_ref01": {
+        "created_at": "s118",
+        "next_attempt_at": "s11a",
+        "object": "s11b",
+        "payload": {},
+        "status": "s11d",
+        "type": "s11e"
+      }
+    }
+  },
+  "requests": {
+    "POST /webhooks/{webhook_id}/events/{event_id}/replay": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /webhooks/{webhook_id}/events/{event_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

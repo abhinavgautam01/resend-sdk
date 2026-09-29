@@ -1,0 +1,96 @@
+# Entity: add_contact_to_segment_response_success
+
+main: kit: entity: add_contact_to_segment_response_success: {
+
+  alias: field: {}
+
+  fields: {
+    contact_id: {
+      h: "Contact Id"
+      n: "contact_id"
+      r: false
+      sh: "The ID of the contact."
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The object type."
+      t: "`$STRING`"
+    }
+    segment_id: {
+      h: "Segment Id"
+      n: "segment_id"
+      r: false
+      sh: "The ID of the segment."
+      t: "`$STRING`"
+    }
+  }
+
+  name: "add_contact_to_segment_response_success"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /contacts/{contact_id}/segments/{segment_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "contact_id"
+                or: "contact_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "segment_id"
+                or: "segment_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/contacts/{contact_id}/segments/{segment_id}"
+          q: {
+            exist: [
+              "contact_id"
+              "segment_id"
+            ]
+          }
+          s: [
+            {
+              lit: "contacts"
+            }
+            {
+              var: "contact_id"
+            }
+            {
+              lit: "segments"
+            }
+            {
+              var: "segment_id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.contact") path("$.main.kit.entity.segment")]
+  ]
+
+}

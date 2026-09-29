@@ -1,0 +1,78 @@
+{
+  "existing": {
+    "contact": {
+      "CONTACT00": {
+        "audience_id": "AUDIENCE01",
+        "created_at": "s6f",
+        "email": "s70",
+        "first_name": "s71",
+        "id": "CONTACT00",
+        "last_name": "s73",
+        "object": "s74",
+        "properties": {},
+        "segments": [],
+        "topics": [],
+        "unsubscribed": true
+      },
+      "CONTACT01": {
+        "audience_id": "AUDIENCE01",
+        "created_at": "sdd",
+        "email": "sde",
+        "first_name": "sdf",
+        "id": "CONTACT01",
+        "last_name": "se1",
+        "object": "se2",
+        "properties": {},
+        "segments": [],
+        "topics": [],
+        "unsubscribed": true
+      },
+      "CONTACT02": {
+        "audience_id": "AUDIENCE01",
+        "created_at": "s14b",
+        "email": "s14c",
+        "first_name": "s14d",
+        "id": "CONTACT02",
+        "last_name": "s14f",
+        "object": "s150",
+        "properties": {},
+        "segments": [],
+        "topics": [],
+        "unsubscribed": true
+      }
+    }
+  },
+  "new": {
+    "contact": {
+      "contact_ref01": {
+        "audience_id": "AUDIENCE01",
+        "created_at": "s1b9",
+        "email": "s1ba",
+        "first_name": "s1bb",
+        "last_name": "s1bd",
+        "object": "s1be",
+        "properties": {},
+        "segments": [],
+        "topics": [],
+        "unsubscribed": true
+      }
+    }
+  },
+  "requests": {
+    "POST /contacts": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /contacts": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /contacts/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

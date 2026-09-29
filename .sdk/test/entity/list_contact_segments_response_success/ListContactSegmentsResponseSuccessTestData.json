@@ -1,0 +1,39 @@
+{
+  "existing": {
+    "list_contact_segments_response_success": {
+      "LIST_CONTACT_SEGMENTS_RESPONSE_SUCCESS00": {
+        "created_at": "s1e",
+        "id": "LIST_CONTACT_SEGMENTS_RESPONSE_SUCCESS00",
+        "name": "s20",
+        "contact_id": "CONTACT01"
+      },
+      "LIST_CONTACT_SEGMENTS_RESPONSE_SUCCESS01": {
+        "created_at": "s3c",
+        "id": "LIST_CONTACT_SEGMENTS_RESPONSE_SUCCESS01",
+        "name": "s3e",
+        "contact_id": "CONTACT01"
+      },
+      "LIST_CONTACT_SEGMENTS_RESPONSE_SUCCESS02": {
+        "created_at": "s5a",
+        "id": "LIST_CONTACT_SEGMENTS_RESPONSE_SUCCESS02",
+        "name": "s5c",
+        "contact_id": "CONTACT01"
+      }
+    }
+  },
+  "new": {
+    "list_contact_segments_response_success": {
+      "list_contact_segments_response_success_ref01": {
+        "created_at": "s78",
+        "name": "s7a"
+      }
+    }
+  },
+  "requests": {
+    "GET /contacts/{contact_id}/segments": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

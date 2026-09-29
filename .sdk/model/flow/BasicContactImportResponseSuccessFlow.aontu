@@ -1,0 +1,32 @@
+# BasicContactImportResponseSuccessFlow
+
+main: kit: flow: BasicContactImportResponseSuccessFlow:
+{
+  entity: "contact_import_response_success",
+  kind: "basic",
+  name: "BasicContactImportResponseSuccessFlow",
+  step: [
+    {
+      i: {
+        ref: "contact_import_response_success_ref01",
+        srcdatavar: "contact_import_response_success_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "contact_import_response_success01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-contact_import_response_success_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicContactImportResponseSuccessFlow"
+}

@@ -1,0 +1,27 @@
+{
+  "existing": {
+    "revoke_o_auth_grant": {
+      "REVOKE_O_AUTH_GRANT00": {
+        "id": "REVOKE_O_AUTH_GRANT00"
+      },
+      "REVOKE_O_AUTH_GRANT01": {
+        "id": "REVOKE_O_AUTH_GRANT01"
+      },
+      "REVOKE_O_AUTH_GRANT02": {
+        "id": "REVOKE_O_AUTH_GRANT02"
+      }
+    }
+  },
+  "new": {
+    "revoke_o_auth_grant": {
+      "revoke_o_auth_grant_ref01": {}
+    }
+  },
+  "requests": {
+    "DELETE /oauth/grants/{oauth_grant_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

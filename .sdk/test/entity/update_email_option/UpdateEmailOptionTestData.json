@@ -1,0 +1,35 @@
+{
+  "existing": {
+    "update_email_option": {
+      "UPDATE_EMAIL_OPTION00": {
+        "scheduled_at": "sa",
+        "email_id": "EMAIL01",
+        "id": "UPDATE_EMAIL_OPTION00"
+      },
+      "UPDATE_EMAIL_OPTION01": {
+        "scheduled_at": "s14",
+        "email_id": "EMAIL01",
+        "id": "UPDATE_EMAIL_OPTION01"
+      },
+      "UPDATE_EMAIL_OPTION02": {
+        "scheduled_at": "s1e",
+        "email_id": "EMAIL01",
+        "id": "UPDATE_EMAIL_OPTION02"
+      }
+    }
+  },
+  "new": {
+    "update_email_option": {
+      "update_email_option_ref01": {
+        "scheduled_at": "s28"
+      }
+    }
+  },
+  "requests": {
+    "PATCH /emails/{email_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

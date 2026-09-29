@@ -1,0 +1,22 @@
+# BasicContactImportFlow
+
+main: kit: flow: BasicContactImportFlow:
+{
+  entity: "contact_import",
+  kind: "basic",
+  name: "BasicContactImportFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "contact_import_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicContactImportFlow"
+}

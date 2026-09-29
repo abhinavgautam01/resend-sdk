@@ -1,0 +1,26 @@
+# BasicListWebhookEventFlow
+
+main: kit: flow: BasicListWebhookEventFlow:
+{
+  entity: "list_webhook_event",
+  kind: "basic",
+  name: "BasicListWebhookEventFlow",
+  step: [
+    {
+      m: {
+        webhook_id: "webhook01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "list_webhook_event_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicListWebhookEventFlow"
+}

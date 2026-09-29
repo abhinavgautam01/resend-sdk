@@ -1,0 +1,18 @@
+# BasicBatchAddSuppressionsResponseSuccessFlow
+
+main: kit: flow: BasicBatchAddSuppressionsResponseSuccessFlow:
+{
+  entity: "batch_add_suppressions_response_success",
+  kind: "basic",
+  name: "BasicBatchAddSuppressionsResponseSuccessFlow",
+  step: [
+    {
+      i: {
+        ref: "batch_add_suppressions_response_success_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicBatchAddSuppressionsResponseSuccessFlow"
+}

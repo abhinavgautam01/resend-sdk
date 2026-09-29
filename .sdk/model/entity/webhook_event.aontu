@@ -1,0 +1,203 @@
+# Entity: webhook_event
+
+main: kit: entity: webhook_event: {
+
+  alias: field: {}
+
+  fields: {
+    created_at: {
+      fo: "date-time"
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "Timestamp indicating when the event was created."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the webhook event."
+      t: "`$STRING`"
+    }
+    next_attempt_at: {
+      fo: "date-time"
+      h: "Next Attempt At"
+      n: "next_attempt_at"
+      r: false
+      sh: "Timestamp of the next scheduled delivery attempt, or null when none is scheduled."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The type of object."
+      t: "`$STRING`"
+    }
+    payload: {
+      h: "Payload"
+      n: "payload"
+      r: false
+      sh: "The event payload sent to the webhook endpoint."
+      t: "`$OBJECT`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "The delivery status of the event for this webhook."
+      t: "`$STRING`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The type of the event."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "webhook_event"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /webhooks/{webhook_id}/events/{event_id}/replay"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "event_id"
+                or: "event_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "webhook_id"
+                or: "webhook_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/webhooks/{webhook_id}/events/{event_id}/replay"
+          q: {
+            "$action": "replay"
+            exist: [
+              "event_id"
+              "webhook_id"
+            ]
+          }
+          s: [
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "webhook_id"
+            }
+            {
+              lit: "events"
+            }
+            {
+              var: "event_id"
+            }
+            {
+              lit: "replay"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /webhooks/{webhook_id}/events/{event_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "event_id"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "webhook_id"
+                or: "webhook_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/webhooks/{webhook_id}/events/{event_id}"
+          q: {
+            exist: [
+              "id"
+              "webhook_id"
+            ]
+          }
+          r: {
+            param: {
+              event_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "webhooks"
+            }
+            {
+              var: "webhook_id"
+            }
+            {
+              lit: "events"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+  relations: ancestors: [
+    [path("$.main.kit.entity.webhook")]
+    [path("$.main.kit.entity.webhook") path("$.main.kit.entity.event")]
+  ]
+
+}

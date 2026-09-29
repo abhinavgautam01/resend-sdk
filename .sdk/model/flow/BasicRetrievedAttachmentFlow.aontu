@@ -1,0 +1,33 @@
+# BasicRetrievedAttachmentFlow
+
+main: kit: flow: BasicRetrievedAttachmentFlow:
+{
+  entity: "retrieved_attachment",
+  kind: "basic",
+  name: "BasicRetrievedAttachmentFlow",
+  step: [
+    {
+      i: {
+        ref: "retrieved_attachment_ref01",
+        srcdatavar: "retrieved_attachment_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "retrieved_attachment01",
+        receiving_id: "receiving01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-retrieved_attachment_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRetrievedAttachmentFlow"
+}

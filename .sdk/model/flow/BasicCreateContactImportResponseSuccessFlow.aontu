@@ -1,0 +1,18 @@
+# BasicCreateContactImportResponseSuccessFlow
+
+main: kit: flow: BasicCreateContactImportResponseSuccessFlow:
+{
+  entity: "create_contact_import_response_success",
+  kind: "basic",
+  name: "BasicCreateContactImportResponseSuccessFlow",
+  step: [
+    {
+      i: {
+        ref: "create_contact_import_response_success_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicCreateContactImportResponseSuccessFlow"
+}

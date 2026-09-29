@@ -1,0 +1,27 @@
+{
+  "existing": {
+    "contact_topics_response_success": {
+      "CONTACT_TOPICS_RESPONSE_SUCCESS00": {
+        "id": "CONTACT_TOPICS_RESPONSE_SUCCESS00"
+      },
+      "CONTACT_TOPICS_RESPONSE_SUCCESS01": {
+        "id": "CONTACT_TOPICS_RESPONSE_SUCCESS01"
+      },
+      "CONTACT_TOPICS_RESPONSE_SUCCESS02": {
+        "id": "CONTACT_TOPICS_RESPONSE_SUCCESS02"
+      }
+    }
+  },
+  "new": {
+    "contact_topics_response_success": {
+      "contact_topics_response_success_ref01": {}
+    }
+  },
+  "requests": {
+    "GET /contacts/{contact_id}/topics": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

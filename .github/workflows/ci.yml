@@ -1,0 +1,409 @@
+name: ci
+
+# Unit tests only — strictly offline. No live API calls.
+# Each per-language job runs the mocked unit-test suite for that target.
+# Each step after checkout is gated by hashFiles() so a job auto-skips
+# all its work when the target directory is absent.
+#
+# Live API verification is NOT run here. It happens in the central
+# rebuild pipeline under controlled conditions, with per-API auth and
+# rate-limit handling.
+#
+# ---------------------------------------------------------------------------
+# COVERAGE TIERS
+#
+# sdkgen generates 22 language targets; this workflow used to have jobs for
+# eight of them (go, go-cli, go-mcp, ts, py, rb, php, lua). The other
+# fourteen were generated into every SDK repo and never compiled or tested
+# there, so a template regression in, say, rust or swift could only be found
+# by hand.
+#
+# BLOCKING — proven jobs. A failure here fails the build.
+#   go, go-cli, go-mcp, ts, py, rb, php, lua
+#
+# ADVISORY — added to close the coverage gap, marked continue-on-error until
+# each has had a green run in a real SDK repo. They report problems without
+# blocking a release; promote a job to blocking (drop continue-on-error) once
+# it has passed. Do not leave one advisory indefinitely — an advisory job that
+# is always red is the same blind spot in a different costume.
+#   js, csharp, java, kotlin, scala, swift, dart, rust, c, cpp, zig, perl,
+#   clojure, elixir, ocaml, haskell
+#
+# Every target exposes `make -C <lang> test`, so the jobs differ only in
+# toolchain setup.
+# ---------------------------------------------------------------------------
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('go/go.mod') != ''
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
+        with:
+          go-version: '1.24'
+      - if: hashFiles('go/go.mod') != ''
+        run: make -C go test
+
+  go-cli:
+    runs-on: ubuntu-latest
+    # aql/eng/go is served via proxy.golang.org but its source repo
+    # (aql-lang/aql) is currently private, so sum.golang.org can't
+    # checksum-verify it. GOSUMDB=off lets `go mod tidy` use the
+    # committed go.sum without re-checking the public sum DB. Once
+    # aql-lang/aql goes public this env can be removed.
+    env:
+      GOSUMDB: 'off'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('go-cli/go.mod') != ''
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
+        with:
+          go-version: '1.24'
+      - if: hashFiles('go-cli/go.mod') != ''
+        run: |
+          cd go-cli
+          go mod tidy
+          go vet ./...
+          go build ./...
+          go test ./...
+
+  go-mcp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('go-mcp/go.mod') != ''
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
+        with:
+          go-version: '1.25'
+      - if: hashFiles('go-mcp/go.mod') != ''
+        run: |
+          cd go-mcp
+          go mod tidy
+          go vet ./...
+          go build ./...
+          go test ./...
+
+  ts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('ts/package.json') != ''
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '24'
+      - if: hashFiles('ts/package.json') != ''
+        run: cd ts && npm install --no-audit --no-fund
+      # npm test runs the compiled dist-test/ suite, which is gitignored —
+      # without a build first, node --test matches zero files and exits 0,
+      # leaving CI green while testing nothing.
+      - if: hashFiles('ts/package.json') != ''
+        run: cd ts && npm run build
+      - if: hashFiles('ts/package.json') != ''
+        run: cd ts && npm test
+
+  py:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('py/Makefile') != ''
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: '3.13'
+      - if: hashFiles('py/Makefile') != ''
+        run: pip install pytest
+      - if: hashFiles('py/Makefile') != ''
+        run: make -C py test
+
+  rb:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('rb/Makefile') != ''
+        uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1
+        with:
+          ruby-version: '3.3'
+      - if: hashFiles('rb/Makefile') != ''
+        run: make -C rb test
+
+  php:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('php/composer.json') != ''
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: '8.3'
+      - if: hashFiles('php/composer.json') != ''
+        run: cd php && composer install --no-interaction --no-progress
+      - if: hashFiles('php/composer.json') != ''
+        run: make -C php test
+
+  lua:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('lua/Makefile') != ''
+        uses: leafo/gh-actions-lua@6919171ccf181b826f44b9bca76307b577217377 # v13
+        with:
+          luaVersion: '5.4'
+      - if: hashFiles('lua/Makefile') != ''
+        uses: leafo/gh-actions-luarocks@35d062def313a7699a0d513e996bcf4352f05389 # v6
+      - if: hashFiles('lua/Makefile') != ''
+        run: luarocks install busted
+      - if: hashFiles('lua/Makefile') != ''
+        run: make -C lua test
+
+  # ---- ADVISORY (see COVERAGE TIERS above) ---------------------------------
+
+  js:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('js/Makefile') != ''
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '24'
+      - if: hashFiles('js/package.json') != ''
+        run: cd js && npm install --no-audit --no-fund
+      - if: hashFiles('js/Makefile') != ''
+        run: make -C js test
+
+  csharp:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('csharp/Makefile') != ''
+        uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6
+        with:
+          dotnet-version: '8.0.x'
+      - if: hashFiles('csharp/Makefile') != ''
+        run: make -C csharp test
+
+  java:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('java/Makefile') != ''
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - if: hashFiles('java/Makefile') != ''
+        run: make -C java test
+
+  kotlin:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('kotlin/Makefile') != ''
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - if: hashFiles('kotlin/Makefile') != ''
+        run: make -C kotlin test
+
+  scala:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('scala/Makefile') != ''
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      # scala-cli, NOT sbt: the generated Makefile runs
+      # `scala-cli run . --main-class ...` and there is no build.sbt.
+      #
+      # Pinned to a release tag, not @main: every generated SDK runs this
+      # workflow, so a mutable default branch would let an upstream push change
+      # what executes in every consumer's CI with no change or review in their
+      # repo. Matches how the other third-party setup actions here are pinned.
+      - if: hashFiles('scala/Makefile') != ''
+        uses: VirtusLab/scala-cli-setup@8db5313925605c20e292348c1749e80dac7eed0f # v1.16.0
+      - if: hashFiles('scala/Makefile') != ''
+        run: make -C scala test
+
+  swift:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      # NODE24 EXCEPTION: every other action here runs on the node24 runtime.
+      # setup-swift has no node24 release — v2 and v3 are both node20 — so it
+      # stays on v2 and will emit a deprecation warning. Revisit when upstream
+      # ships one.
+      - if: hashFiles('swift/Makefile') != ''
+        uses: swift-actions/setup-swift@7ca6abe6b3b0e8b5421b88be48feee39cbf52c6a # v2
+        with:
+          swift-version: '6.0'
+      - if: hashFiles('swift/Makefile') != ''
+        run: make -C swift test
+
+  dart:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('dart/Makefile') != ''
+        uses: dart-lang/setup-dart@65eb853c7ba17dde3be364c3d2858773e7144260 # v1
+        with:
+          sdk: stable
+      - if: hashFiles('dart/pubspec.yaml') != ''
+        run: cd dart && dart pub get
+      - if: hashFiles('dart/Makefile') != ''
+        run: make -C dart test
+
+  rust:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('rust/Makefile') != ''
+        # The SHA is the head of this action's `stable` BRANCH, whose action.yml
+        # carries `toolchain: default: stable`. State it explicitly anyway, so
+        # the intended toolchain survives a future re-pin to another branch.
+        uses: dtolnay/rust-toolchain@4360b52568e2003a75bf9bc1d59f33a8e3fc893c # stable
+        with:
+          toolchain: stable
+      - if: hashFiles('rust/Makefile') != ''
+        run: make -C rust test
+
+  c:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      # gcc/make are preinstalled on ubuntu-latest, but the secrets feature's
+      # generated feature/secrets/kinds.mk adds `-lssl -lcrypto -lcurl` when a
+      # plugin group is active, and feature/secrets/kinds.c includes
+      # <curl/curl.h>. The runner image ships neither header set, so the build
+      # stopped at `fatal error: curl/curl.h: No such file or directory`.
+      # A model with no active plugin group links libc alone and this is inert.
+      - if: hashFiles('c/Makefile') != ''
+        run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev libssl-dev
+      - if: hashFiles('c/Makefile') != ''
+        run: make -C c test
+
+  cpp:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('cpp/Makefile') != ''
+        run: make -C cpp test
+
+  zig:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      # 0.16, matching the generated build.zig.zon's enum-literal `.name` +
+      # `.fingerprint` form and the rest of the voxgig toolchain: struct,
+      # omni and sekreto all pin 0.16 too. This pin and Package_zig.ts move
+      # TOGETHER — the zon form 0.16 requires is exactly what 0.13 cannot
+      # parse, so a split leaves the generated SDK unbuildable on one side
+      # or the other. It was 0.13 until the target was ported, which is
+      # what let omni's zig port be vendored at all.
+      # INSTALLED FROM ziglang.org, NOT setup-zig. That action resolves the
+      # toolchain through community mirrors, and they failed every run: 404
+      # from zig.linus.dev, 503 from zig.nekos.space, 502 from
+      # zigmirror.hryx.net, with no fallback to the official host. The job had
+      # not gone green once. ziglang.org serves the same tarball and answers
+      # 200; `--retry` covers an ordinary blip. This also drops the node20
+      # deprecation warning that pinned the action to v1.
+      - if: hashFiles('zig/build.zig') != ''
+        run: |
+          set -euo pipefail
+          version=0.16.0
+          curl -fsSL --retry 5 --retry-all-errors \
+            -o /tmp/zig.tar.xz \
+            "https://ziglang.org/download/${version}/zig-x86_64-linux-${version}.tar.xz"
+          sudo mkdir -p /opt/zig
+          sudo tar -xJf /tmp/zig.tar.xz -C /opt/zig --strip-components=1
+          echo /opt/zig >> "$GITHUB_PATH"
+      - if: hashFiles('zig/build.zig') != ''
+        run: zig version
+      - if: hashFiles('zig/build.zig') != ''
+        run: make -C zig test
+
+  perl:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      # perl is preinstalled on ubuntu-latest.
+      - if: hashFiles('perl/Makefile') != ''
+        run: make -C perl test
+
+  clojure:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('clojure/Makefile') != ''
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - if: hashFiles('clojure/Makefile') != ''
+        uses: DeLaGuardo/setup-clojure@4c7a6f613e5089821bb3bb2a33a3ee115578580d # 13
+        with:
+          cli: latest
+      - if: hashFiles('clojure/Makefile') != ''
+        run: make -C clojure test
+
+  elixir:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('elixir/Makefile') != ''
+        uses: erlef/setup-beam@54075bcc5e249e4758d363f27d099f55d843f124 # v1
+        with:
+          otp-version: '27'
+          elixir-version: '1.17'
+      - if: hashFiles('elixir/Makefile') != ''
+        run: make -C elixir test
+
+  ocaml:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('ocaml/Makefile') != ''
+        uses: ocaml/setup-ocaml@605a7e998e76e035b82c14d618a6e1010732c4ce # v3
+        with:
+          ocaml-compiler: '5.2'
+      - if: hashFiles('ocaml/Makefile') != ''
+        # setup-ocaml installs the compiler into an opam switch; without
+        # `opam exec` the switch is not on PATH and make dies with
+        # `ocamlc: No such file or directory` (exit 127).
+        run: opam exec -- make -C ocaml test
+
+  haskell:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - if: hashFiles('haskell/Makefile') != ''
+        uses: haskell-actions/setup@6037f33647c3f17758a2356c80fc4a53d7e0685d # v2
+        with:
+          ghc-version: '9.6'
+      - if: hashFiles('haskell/Makefile') != ''
+        run: make -C haskell test

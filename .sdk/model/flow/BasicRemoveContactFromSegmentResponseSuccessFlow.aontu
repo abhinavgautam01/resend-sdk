@@ -1,0 +1,9 @@
+# BasicRemoveContactFromSegmentResponseSuccessFlow
+
+main: kit: flow: BasicRemoveContactFromSegmentResponseSuccessFlow:
+{
+  entity: "remove_contact_from_segment_response_success",
+  kind: "basic",
+  name: "BasicRemoveContactFromSegmentResponseSuccessFlow",
+  "key$": "BasicRemoveContactFromSegmentResponseSuccessFlow"
+}

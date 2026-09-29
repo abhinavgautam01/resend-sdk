@@ -1,0 +1,29 @@
+# BasicUpdateEmailOptionFlow
+
+main: kit: flow: BasicUpdateEmailOptionFlow:
+{
+  entity: "update_email_option",
+  kind: "basic",
+  name: "BasicUpdateEmailOptionFlow",
+  step: [
+    {
+      i: {
+        ref: "update_email_option_ref01",
+        srcdatavar: "update_email_option_ref01_data",
+        suffix: "_up0",
+        textfield: "scheduled_at"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-update_email_option_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUpdateEmailOptionFlow"
+}

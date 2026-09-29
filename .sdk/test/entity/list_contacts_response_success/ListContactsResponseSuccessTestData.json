@@ -1,0 +1,51 @@
+{
+  "existing": {
+    "list_contacts_response_success": {
+      "LIST_CONTACTS_RESPONSE_SUCCESS00": {
+        "created_at": "s3c",
+        "email": "s3d",
+        "first_name": "s3e",
+        "id": "LIST_CONTACTS_RESPONSE_SUCCESS00",
+        "last_name": "s40",
+        "unsubscribed": false,
+        "segment_id": "SEGMENT01"
+      },
+      "LIST_CONTACTS_RESPONSE_SUCCESS01": {
+        "created_at": "s78",
+        "email": "s79",
+        "first_name": "s7a",
+        "id": "LIST_CONTACTS_RESPONSE_SUCCESS01",
+        "last_name": "s7c",
+        "unsubscribed": false,
+        "segment_id": "SEGMENT01"
+      },
+      "LIST_CONTACTS_RESPONSE_SUCCESS02": {
+        "created_at": "sb4",
+        "email": "sb5",
+        "first_name": "sb6",
+        "id": "LIST_CONTACTS_RESPONSE_SUCCESS02",
+        "last_name": "sb8",
+        "unsubscribed": false,
+        "segment_id": "SEGMENT01"
+      }
+    }
+  },
+  "new": {
+    "list_contacts_response_success": {
+      "list_contacts_response_success_ref01": {
+        "created_at": "sf0",
+        "email": "sf1",
+        "first_name": "sf2",
+        "last_name": "sf4",
+        "unsubscribed": false
+      }
+    }
+  },
+  "requests": {
+    "GET /segments/{id}/contacts": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

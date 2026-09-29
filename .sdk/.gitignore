@@ -1,0 +1,19 @@
+# Local config / secrets
+*.local.*
+*.local
+
+# Dependencies (no trailing slash: also ignores node_modules SYMLINKS, e.g.
+# .sdk/node_modules -> shared tree, which a dir-only rule leaves tracked)
+node_modules
+
+# Build output
+dist/
+dist-test/
+*.tsbuildinfo
+
+# Generated logs
+log/
+*.log
+
+# OS
+.DS_Store

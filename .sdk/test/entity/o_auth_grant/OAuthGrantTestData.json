@@ -1,0 +1,52 @@
+{
+  "existing": {
+    "o_auth_grant": {
+      "O_AUTH_GRANT00": {
+        "client": {},
+        "client_id": "CLIENT01",
+        "created_at": "s48",
+        "id": "O_AUTH_GRANT00",
+        "revoked_at": "s4a",
+        "revoked_reason": "s4b",
+        "scopes": []
+      },
+      "O_AUTH_GRANT01": {
+        "client": {},
+        "client_id": "CLIENT01",
+        "created_at": "s8e",
+        "id": "O_AUTH_GRANT01",
+        "revoked_at": "s90",
+        "revoked_reason": "s91",
+        "scopes": []
+      },
+      "O_AUTH_GRANT02": {
+        "client": {},
+        "client_id": "CLIENT01",
+        "created_at": "sd4",
+        "id": "O_AUTH_GRANT02",
+        "revoked_at": "sd6",
+        "revoked_reason": "sd7",
+        "scopes": []
+      }
+    }
+  },
+  "new": {
+    "o_auth_grant": {
+      "o_auth_grant_ref01": {
+        "client": {},
+        "client_id": "CLIENT01",
+        "created_at": "s11a",
+        "revoked_at": "s11c",
+        "revoked_reason": "s11d",
+        "scopes": []
+      }
+    }
+  },
+  "requests": {
+    "GET /oauth/grants": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "existing": {
+    "update_webhook": {
+      "UPDATE_WEBHOOK00": {
+        "created_at": "s3c",
+        "endpoint": "s3d",
+        "events": [],
+        "id": "UPDATE_WEBHOOK00",
+        "object": "s40",
+        "status": "s41"
+      },
+      "UPDATE_WEBHOOK01": {
+        "created_at": "s78",
+        "endpoint": "s79",
+        "events": [],
+        "id": "UPDATE_WEBHOOK01",
+        "object": "s7c",
+        "status": "s7d"
+      },
+      "UPDATE_WEBHOOK02": {
+        "created_at": "sb4",
+        "endpoint": "sb5",
+        "events": [],
+        "id": "UPDATE_WEBHOOK02",
+        "object": "sb8",
+        "status": "sb9"
+      }
+    }
+  },
+  "new": {
+    "update_webhook": {
+      "update_webhook_ref01": {
+        "created_at": "sf0",
+        "endpoint": "sf1",
+        "events": [],
+        "object": "sf4",
+        "status": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "POST /webhooks": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /webhooks": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /webhooks/{webhook_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

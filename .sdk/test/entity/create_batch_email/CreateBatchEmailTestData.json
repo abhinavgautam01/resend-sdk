@@ -1,0 +1,32 @@
+{
+  "existing": {
+    "create_batch_email": {
+      "CREATE_BATCH_EMAIL00": {
+        "data": [],
+        "id": "CREATE_BATCH_EMAIL00"
+      },
+      "CREATE_BATCH_EMAIL01": {
+        "data": [],
+        "id": "CREATE_BATCH_EMAIL01"
+      },
+      "CREATE_BATCH_EMAIL02": {
+        "data": [],
+        "id": "CREATE_BATCH_EMAIL02"
+      }
+    }
+  },
+  "new": {
+    "create_batch_email": {
+      "create_batch_email_ref01": {
+        "data": []
+      }
+    }
+  },
+  "requests": {
+    "POST /emails/batch": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

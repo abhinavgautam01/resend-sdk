@@ -1,0 +1,18 @@
+# BasicCreateBatchEmailFlow
+
+main: kit: flow: BasicCreateBatchEmailFlow:
+{
+  entity: "create_batch_email",
+  kind: "basic",
+  name: "BasicCreateBatchEmailFlow",
+  step: [
+    {
+      i: {
+        ref: "create_batch_email_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicCreateBatchEmailFlow"
+}

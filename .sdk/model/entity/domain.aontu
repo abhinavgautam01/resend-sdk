@@ -1,0 +1,335 @@
+# Entity: domain
+
+main: kit: entity: domain: {
+
+  alias: field: {}
+
+  fields: {
+    capabilities: {
+      h: "Capabilities"
+      n: "capabilities"
+      r: false
+      sh: "Configure the domain capabilities for sending and receiving emails."
+      t: "`$OBJECT`"
+    }
+    click_tracking: {
+      h: "Click Tracking"
+      n: "click_tracking"
+      r: false
+      sh: "Whether click tracking is enabled for this domain."
+      t: "`$BOOLEAN`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The date and time the domain was created."
+      t: "`$STRING`"
+    }
+    custom_return_path: {
+      h: "Custom Return Path"
+      n: "custom_return_path"
+      r: false
+      sh: "For advanced use cases, choose a subdomain for the Return-Path address."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the domain."
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The name of the domain."
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The type of object."
+      t: "`$STRING`"
+    }
+    open_tracking: {
+      h: "Open Tracking"
+      n: "open_tracking"
+      r: false
+      sh: "Whether open tracking is enabled for this domain."
+      t: "`$BOOLEAN`"
+    }
+    records: {
+      h: "Records"
+      n: "records"
+      r: false
+      t: "`$ARRAY`"
+    }
+    region: {
+      h: "Region"
+      n: "region"
+      r: false
+      sh: "The region where the domain is hosted."
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "The status of the domain."
+      t: "`$STRING`"
+    }
+    tls: {
+      h: "Tls"
+      n: "tls"
+      r: false
+      sh: "TLS mode."
+      t: "`$STRING`"
+    }
+    tracking_subdomain: {
+      h: "Tracking Subdomain"
+      n: "tracking_subdomain"
+      r: false
+      sh: "The subdomain used for click and open tracking."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "domain"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /domains/{domain_id}/verify"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "domain_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/domains/{domain_id}/verify"
+          q: {
+            "$action": "verify"
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              domain_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "domains"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "verify"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /domains"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/domains"
+          s: [
+            {
+              lit: "domains"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /domains"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "after"
+                or: "after"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "before"
+                or: "before"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/domains"
+          q: {
+            exist: [
+              "after"
+              "before"
+              "limit"
+            ]
+          }
+          s: [
+            {
+              lit: "domains"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /domains/{domain_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "domain_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/domains/{domain_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              domain_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "domains"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /domains/{domain_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "domain_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/domains/{domain_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              domain_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "domains"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

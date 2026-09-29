@@ -1,0 +1,48 @@
+{
+  "existing": {
+    "contact_import": {
+      "CONTACT_IMPORT00": {
+        "completed_at": "s3c",
+        "counts": {},
+        "created_at": "s3e",
+        "id": "CONTACT_IMPORT00",
+        "object": "s40",
+        "status": "s41"
+      },
+      "CONTACT_IMPORT01": {
+        "completed_at": "s78",
+        "counts": {},
+        "created_at": "s7a",
+        "id": "CONTACT_IMPORT01",
+        "object": "s7c",
+        "status": "s7d"
+      },
+      "CONTACT_IMPORT02": {
+        "completed_at": "sb4",
+        "counts": {},
+        "created_at": "sb6",
+        "id": "CONTACT_IMPORT02",
+        "object": "sb8",
+        "status": "sb9"
+      }
+    }
+  },
+  "new": {
+    "contact_import": {
+      "contact_import_ref01": {
+        "completed_at": "sf0",
+        "counts": {},
+        "created_at": "sf2",
+        "object": "sf4",
+        "status": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "GET /contacts/imports": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

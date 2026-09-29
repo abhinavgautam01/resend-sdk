@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "module": "nodenext",
+    "noEmitOnError": true,
+    "outDir":"../dist-test",
+    "rootDir":".",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "ES2022",
+    "types": ["node"]
+  }
+}

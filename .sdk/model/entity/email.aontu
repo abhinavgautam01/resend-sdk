@@ -1,0 +1,407 @@
+# Entity: email
+
+main: kit: entity: email: {
+
+  alias: field: {}
+
+  fields: {
+    attachments: {
+      h: "Attachments"
+      n: "attachments"
+      r: false
+      t: "`$ARRAY`"
+    }
+    bcc: {
+      h: "Bcc"
+      n: "bcc"
+      r: false
+      sh: "The email addresses of the blind carbon copy recipients."
+      t: "`$ARRAY`"
+    }
+    cc: {
+      h: "Cc"
+      n: "cc"
+      r: false
+      sh: "The email addresses of the carbon copy recipients."
+      t: "`$ARRAY`"
+    }
+    created_at: {
+      h: "Created At"
+      n: "created_at"
+      r: false
+      sh: "The date and time the email was created."
+      t: "`$STRING`"
+    }
+    from: {
+      h: "From"
+      n: "from"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The email address of the sender."
+      t: "`$STRING`"
+    }
+    headers: {
+      h: "Headers"
+      n: "headers"
+      r: false
+      sh: "Custom headers to add to the email."
+      t: "`$OBJECT`"
+    }
+    html: {
+      h: "Html"
+      n: "html"
+      r: false
+      sh: "The HTML body of the email."
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The ID of the email."
+      t: "`$STRING`"
+    }
+    last_event: {
+      h: "Last Event"
+      n: "last_event"
+      r: false
+      sh: "The status of the email."
+      t: "`$STRING`"
+    }
+    message_id: {
+      h: "Message Id"
+      n: "message_id"
+      r: false
+      sh: "The Message-ID header value of the email."
+      t: "`$STRING`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The type of object."
+      t: "`$STRING`"
+    }
+    reply_to: {
+      h: "Reply To"
+      n: "reply_to"
+      r: false
+      sh: "The email addresses to which replies should be sent."
+      t: "`$ARRAY`"
+    }
+    scheduled_at: {
+      h: "Scheduled At"
+      n: "scheduled_at"
+      r: false
+      sh: "Schedule email to be sent later."
+      t: "`$STRING`"
+    }
+    subject: {
+      h: "Subject"
+      n: "subject"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      r: false
+      sh: "The subject line of the email."
+      t: "`$STRING`"
+    }
+    tags: {
+      h: "Tags"
+      n: "tags"
+      r: false
+      t: "`$ARRAY`"
+    }
+    template: {
+      h: "Template"
+      n: "template"
+      r: false
+      t: "`$ANY`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 5
+      }
+    }
+    text: {
+      h: "Text"
+      n: "text"
+      r: false
+      sh: "The plain text body of the email."
+      t: "`$STRING`"
+    }
+    to: {
+      h: "To"
+      n: "to"
+      op: {
+        create: {
+          req: true
+          type: "`$ANY`"
+        }
+      }
+      r: false
+      sh: "Recipient email address."
+      t: "`$ARRAY`"
+    }
+    topic_id: {
+      h: "Topic Id"
+      n: "topic_id"
+      r: false
+      sh: "The topic ID to scope the email to."
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "email"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /emails/{email_id}/cancel"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "email_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/emails/{email_id}/cancel"
+          q: {
+            "$action": "cancel"
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              email_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "emails"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "cancel"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /emails/{email_id}/share"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "email_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/emails/{email_id}/share"
+          q: {
+            "$action": "share"
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              email_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "emails"
+            }
+            {
+              var: "id"
+            }
+            {
+              lit: "share"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "POST /emails"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            header: [
+              {
+                k: "header"
+                n: "idempotency_key"
+                or: "Idempotency-Key"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "POST"
+          o: "/emails"
+          q: {
+            exist: [
+              "idempotency_key"
+            ]
+          }
+          s: [
+            {
+              lit: "emails"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /emails"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "after"
+                or: "after"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "before"
+                or: "before"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/emails"
+          q: {
+            exist: [
+              "after"
+              "before"
+              "limit"
+            ]
+          }
+          s: [
+            {
+              lit: "emails"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /emails/{email_id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "email_id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/emails/{email_id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              email_id: "id"
+            }
+          }
+          s: [
+            {
+              lit: "emails"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

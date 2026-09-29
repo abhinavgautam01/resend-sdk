@@ -1,0 +1,40 @@
+{
+  "existing": {
+    "update_contact_topics_response_success": {
+      "UPDATE_CONTACT_TOPICS_RESPONSE_SUCCESS00": {
+        "contact_id": "CONTACT01",
+        "object": "s1f",
+        "topics": [],
+        "id": "UPDATE_CONTACT_TOPICS_RESPONSE_SUCCESS00"
+      },
+      "UPDATE_CONTACT_TOPICS_RESPONSE_SUCCESS01": {
+        "contact_id": "CONTACT01",
+        "object": "s3d",
+        "topics": [],
+        "id": "UPDATE_CONTACT_TOPICS_RESPONSE_SUCCESS01"
+      },
+      "UPDATE_CONTACT_TOPICS_RESPONSE_SUCCESS02": {
+        "contact_id": "CONTACT01",
+        "object": "s5b",
+        "topics": [],
+        "id": "UPDATE_CONTACT_TOPICS_RESPONSE_SUCCESS02"
+      }
+    }
+  },
+  "new": {
+    "update_contact_topics_response_success": {
+      "update_contact_topics_response_success_ref01": {
+        "contact_id": "CONTACT01",
+        "object": "s79",
+        "topics": []
+      }
+    }
+  },
+  "requests": {
+    "PATCH /contacts/{contact_id}/topics": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

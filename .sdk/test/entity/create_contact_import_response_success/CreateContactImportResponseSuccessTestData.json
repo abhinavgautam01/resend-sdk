@@ -1,0 +1,27 @@
+{
+  "existing": {
+    "create_contact_import_response_success": {
+      "CREATE_CONTACT_IMPORT_RESPONSE_SUCCESS00": {
+        "id": "CREATE_CONTACT_IMPORT_RESPONSE_SUCCESS00"
+      },
+      "CREATE_CONTACT_IMPORT_RESPONSE_SUCCESS01": {
+        "id": "CREATE_CONTACT_IMPORT_RESPONSE_SUCCESS01"
+      },
+      "CREATE_CONTACT_IMPORT_RESPONSE_SUCCESS02": {
+        "id": "CREATE_CONTACT_IMPORT_RESPONSE_SUCCESS02"
+      }
+    }
+  },
+  "new": {
+    "create_contact_import_response_success": {
+      "create_contact_import_response_success_ref01": {}
+    }
+  },
+  "requests": {
+    "POST /contacts/imports": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "existing": {
+    "contact_property": {
+      "CONTACT_PROPERTY00": {
+        "created_at": "s3c",
+        "fallback_value": "s3d",
+        "id": "CONTACT_PROPERTY00",
+        "key": "s3f",
+        "object": "s40",
+        "type": "s41"
+      },
+      "CONTACT_PROPERTY01": {
+        "created_at": "s78",
+        "fallback_value": "s79",
+        "id": "CONTACT_PROPERTY01",
+        "key": "s7b",
+        "object": "s7c",
+        "type": "s7d"
+      },
+      "CONTACT_PROPERTY02": {
+        "created_at": "sb4",
+        "fallback_value": "sb5",
+        "id": "CONTACT_PROPERTY02",
+        "key": "sb7",
+        "object": "sb8",
+        "type": "sb9"
+      }
+    }
+  },
+  "new": {
+    "contact_property": {
+      "contact_property_ref01": {
+        "created_at": "sf0",
+        "fallback_value": "sf1",
+        "key": "sf3",
+        "object": "sf4",
+        "type": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "POST /contact-properties": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /contact-properties": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /contact-properties/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

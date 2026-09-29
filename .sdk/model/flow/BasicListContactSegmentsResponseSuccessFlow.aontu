@@ -1,0 +1,26 @@
+# BasicListContactSegmentsResponseSuccessFlow
+
+main: kit: flow: BasicListContactSegmentsResponseSuccessFlow:
+{
+  entity: "list_contact_segments_response_success",
+  kind: "basic",
+  name: "BasicListContactSegmentsResponseSuccessFlow",
+  step: [
+    {
+      m: {
+        contact_id: "contact01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "list_contact_segments_response_success_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicListContactSegmentsResponseSuccessFlow"
+}

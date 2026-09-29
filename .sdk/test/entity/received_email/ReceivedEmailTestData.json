@@ -1,0 +1,87 @@
+{
+  "existing": {
+    "received_email": {
+      "RECEIVED_EMAIL00": {
+        "attachments": [],
+        "bcc": "s97",
+        "cc": "s98",
+        "created_at": "s99",
+        "from": "s9a",
+        "headers": "s9b",
+        "html": "s9c",
+        "id": "RECEIVED_EMAIL00",
+        "message_id": "MESSAGE01",
+        "object": "s9f",
+        "received_for": [],
+        "reply_to": "sa1",
+        "subject": "sa2",
+        "text": "sa3",
+        "to": [],
+        "email_id": "EMAIL01"
+      },
+      "RECEIVED_EMAIL01": {
+        "attachments": [],
+        "bcc": "s12d",
+        "cc": "s12e",
+        "created_at": "s12f",
+        "from": "s130",
+        "headers": "s131",
+        "html": "s132",
+        "id": "RECEIVED_EMAIL01",
+        "message_id": "MESSAGE01",
+        "object": "s135",
+        "received_for": [],
+        "reply_to": "s137",
+        "subject": "s138",
+        "text": "s139",
+        "to": [],
+        "email_id": "EMAIL01"
+      },
+      "RECEIVED_EMAIL02": {
+        "attachments": [],
+        "bcc": "s1c3",
+        "cc": "s1c4",
+        "created_at": "s1c5",
+        "from": "s1c6",
+        "headers": "s1c7",
+        "html": "s1c8",
+        "id": "RECEIVED_EMAIL02",
+        "message_id": "MESSAGE01",
+        "object": "s1cb",
+        "received_for": [],
+        "reply_to": "s1cd",
+        "subject": "s1ce",
+        "text": "s1cf",
+        "to": [],
+        "email_id": "EMAIL01"
+      }
+    }
+  },
+  "new": {
+    "received_email": {
+      "received_email_ref01": {
+        "attachments": [],
+        "bcc": "s259",
+        "cc": "s25a",
+        "created_at": "s25b",
+        "from": "s25c",
+        "headers": "s25d",
+        "html": "s25e",
+        "message_id": "MESSAGE01",
+        "object": "s261",
+        "received_for": [],
+        "reply_to": "s263",
+        "subject": "s264",
+        "text": "s265",
+        "to": []
+      }
+    }
+  },
+  "requests": {
+    "GET /emails/receiving/{email_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

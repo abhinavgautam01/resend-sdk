@@ -1,0 +1,44 @@
+# BasicLogFlow
+
+main: kit: flow: BasicLogFlow:
+{
+  entity: "log",
+  kind: "basic",
+  name: "BasicLogFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "log_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "log_ref01",
+        srcdatavar: "log_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "log01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-log_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLogFlow"
+}

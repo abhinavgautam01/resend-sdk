@@ -1,0 +1,36 @@
+{
+  "existing": {
+    "update_contact_property_response_success": {
+      "UPDATE_CONTACT_PROPERTY_RESPONSE_SUCCESS00": {
+        "fallback_value": "s1e",
+        "id": "UPDATE_CONTACT_PROPERTY_RESPONSE_SUCCESS00",
+        "object": "s20"
+      },
+      "UPDATE_CONTACT_PROPERTY_RESPONSE_SUCCESS01": {
+        "fallback_value": "s3c",
+        "id": "UPDATE_CONTACT_PROPERTY_RESPONSE_SUCCESS01",
+        "object": "s3e"
+      },
+      "UPDATE_CONTACT_PROPERTY_RESPONSE_SUCCESS02": {
+        "fallback_value": "s5a",
+        "id": "UPDATE_CONTACT_PROPERTY_RESPONSE_SUCCESS02",
+        "object": "s5c"
+      }
+    }
+  },
+  "new": {
+    "update_contact_property_response_success": {
+      "update_contact_property_response_success_ref01": {
+        "fallback_value": "s78",
+        "object": "s7a"
+      }
+    }
+  },
+  "requests": {
+    "PATCH /contact-properties/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

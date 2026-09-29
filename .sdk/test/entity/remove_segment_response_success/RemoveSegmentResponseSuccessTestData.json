@@ -1,0 +1,54 @@
+{
+  "existing": {
+    "remove_segment_response_success": {
+      "REMOVE_SEGMENT_RESPONSE_SUCCESS00": {
+        "audience_id": "AUDIENCE01",
+        "created_at": "s33",
+        "filter": {},
+        "id": "REMOVE_SEGMENT_RESPONSE_SUCCESS00",
+        "name": "s36"
+      },
+      "REMOVE_SEGMENT_RESPONSE_SUCCESS01": {
+        "audience_id": "AUDIENCE01",
+        "created_at": "s65",
+        "filter": {},
+        "id": "REMOVE_SEGMENT_RESPONSE_SUCCESS01",
+        "name": "s68"
+      },
+      "REMOVE_SEGMENT_RESPONSE_SUCCESS02": {
+        "audience_id": "AUDIENCE01",
+        "created_at": "s97",
+        "filter": {},
+        "id": "REMOVE_SEGMENT_RESPONSE_SUCCESS02",
+        "name": "s9a"
+      }
+    }
+  },
+  "new": {
+    "remove_segment_response_success": {
+      "remove_segment_response_success_ref01": {
+        "audience_id": "AUDIENCE01",
+        "created_at": "sc9",
+        "filter": {},
+        "name": "scc"
+      }
+    }
+  },
+  "requests": {
+    "POST /segments": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /segments": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /segments/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

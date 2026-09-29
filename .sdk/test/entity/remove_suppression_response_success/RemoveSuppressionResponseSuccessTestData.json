@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "remove_suppression_response_success": {
+      "REMOVE_SUPPRESSION_RESPONSE_SUCCESS00": {
+        "created_at": "s32",
+        "email": "s33",
+        "id": "REMOVE_SUPPRESSION_RESPONSE_SUCCESS00",
+        "origin": "s35",
+        "source_id": "SOURCE01",
+        "suppression": "SUPPRESSION01"
+      },
+      "REMOVE_SUPPRESSION_RESPONSE_SUCCESS01": {
+        "created_at": "s64",
+        "email": "s65",
+        "id": "REMOVE_SUPPRESSION_RESPONSE_SUCCESS01",
+        "origin": "s67",
+        "source_id": "SOURCE01",
+        "suppression": "SUPPRESSION01"
+      },
+      "REMOVE_SUPPRESSION_RESPONSE_SUCCESS02": {
+        "created_at": "s96",
+        "email": "s97",
+        "id": "REMOVE_SUPPRESSION_RESPONSE_SUCCESS02",
+        "origin": "s99",
+        "source_id": "SOURCE01",
+        "suppression": "SUPPRESSION01"
+      }
+    }
+  },
+  "new": {
+    "remove_suppression_response_success": {
+      "remove_suppression_response_success_ref01": {
+        "created_at": "sc8",
+        "email": "sc9",
+        "origin": "scb",
+        "source_id": "SOURCE01"
+      }
+    }
+  },
+  "requests": {
+    "POST /suppressions": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /suppressions": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /suppressions/{suppression}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

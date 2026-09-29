@@ -1,0 +1,27 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      description: "Resend is the email platform for developers."
+      security: {
+        in: "header"
+        name: "Authorization"
+        prefix: "Bearer"
+        scheme: "bearerAuth"
+        type: "http"
+      }
+      servers: [
+        {
+          url: "https://api.resend.com"
+        }
+      ]
+      summary: "Resend is the email platform for developers."
+      title: "Resend"
+      version: "1.5.1"
+      website: "https://resend.com"
+    }
+  }
+}
+

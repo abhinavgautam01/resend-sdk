@@ -1,0 +1,26 @@
+# BasicListBroadcastClickedLinksResponseSuccessFlow
+
+main: kit: flow: BasicListBroadcastClickedLinksResponseSuccessFlow:
+{
+  entity: "list_broadcast_clicked_links_response_success",
+  kind: "basic",
+  name: "BasicListBroadcastClickedLinksResponseSuccessFlow",
+  step: [
+    {
+      m: {
+        broadcast_id: "broadcast01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "list_broadcast_clicked_links_response_success_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicListBroadcastClickedLinksResponseSuccessFlow"
+}

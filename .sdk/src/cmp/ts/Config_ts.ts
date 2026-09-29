@@ -1,0 +1,221 @@
+
+import * as Path from 'node:path'
+
+
+import {
+  Content,
+  File,
+  Fragment,
+  Line,
+  cmp,
+  configDefinition,
+  configReprSetting,
+  each,
+  indent,
+  isAuthActive,
+  isConfigData,
+  isHttpBasicAuth,
+  resolveAuthIn,
+  resolveAuthName,
+  resolveAuthPrefix,
+  serverVariables,
+  targetFeatures,
+} from '@voxgig/sdkgen'
+
+
+import {
+  KIT,
+  Model,
+  getModelPath,
+  nom,
+} from '@voxgig/apidef'
+
+
+import {
+  formatJson,
+} from './utility_ts'
+
+
+const Config = cmp(async function Config(props: any) {
+  const ctx$ = props.ctx$
+  const target = props.target
+
+  const model: Model = ctx$.model
+
+  const entity = getModelPath(model, `main.${KIT}.entity`)
+  const feature = targetFeatures(model, target)
+
+  const ff = Path.normalize(__dirname + '/../../../src/cmp/ts/fragment/')
+
+  const headers = getModelPath(model, `main.${KIT}.config.headers`) || {}
+
+  const authActive = isAuthActive(model)
+  const authPrefix = resolveAuthPrefix(model)
+  const authBasic = isHttpBasicAuth(model)
+  // `in` and `name` travel with the prefix now. They were resolved by
+  // apidef all along and dropped here, so an apiKey-in-query API got an
+  // Authorization header it does not read. Emitted only when they differ
+  // from the defaults, so a header/Authorization SDK is byte-identical to
+  // what it generated before.
+  const authIn = resolveAuthIn(model)
+  const authName = resolveAuthName(model)
+  const authBlock = authActive
+    ? `auth: {
+      prefix: '${authPrefix}',${authBasic ? `
+      basic: true,` : ''}${'header' === authIn ? '' : `
+      in: '${authIn}',`}${'Authorization' === authName ? '' : `
+      name: '${authName}',`}
+    },
+
+    `
+    : ''
+
+  const svars = serverVariables(model)
+  const serverBlock = 0 === svars.length ? '' :
+    'server: {\n' +
+    svars.map((v: any) => `      ${JSON.stringify(v.name)}: ${JSON.stringify(v.dflt)},\n`).join('') +
+    '    },\n\n    '
+
+  let baseUrl = ''
+  try {
+    baseUrl = getModelPath(model, `main.${KIT}.info.servers.0.url`)
+  } catch (_e) { }
+
+  const { def: configDef, json: configJson } = configDefinition(model, target.name)
+  const asData = isConfigData(configJson, configReprSetting(model))
+
+  File({ name: 'Config.' + target.ext }, () => {
+
+    if (asData) {
+      Fragment({
+        from: ff + 'Config.data.fragment.ts',
+
+        replace: {
+
+          '// #ImportFeatures': () => {
+            each(feature, (f: any) => {
+              Line(`import { ${nom(f, 'Name')}Feature } from ` +
+                `'./feature/${f.name}/${nom(f, 'Name')}Feature'`)
+            })
+            pluginImports(feature)
+          },
+
+          '// #FeatureClasses': () => {
+            each(feature, (f: any) => {
+              Line(` ${f.name}: ${nom(f, 'Name')}Feature,`)
+            })
+          },
+
+          '// #FeaturePlugins': () => pluginDefs(feature),
+
+          "'CONFIGJSON'": JSON.stringify(configJson),
+        }
+      })
+      return
+    }
+
+    Fragment({
+      from: ff + 'Config.fragment.ts',
+
+      replace: {
+
+        "'BASEURL'": JSON.stringify(baseUrl),
+
+        "'SERVERBLOCK'": serverBlock,
+
+        "'AUTHBLOCK'": authBlock,
+
+        "'HEADERS'": indent(JSON.stringify(headers, null, 2), 4).trim(),
+
+        '// #ImportFeatures': () => {
+          each(feature, (f: any) => {
+            Line(`import { ${nom(f, 'Name')}Feature } from ` +
+              `'./feature/${f.name}/${nom(f, 'Name')}Feature'`)
+          })
+          pluginImports(feature)
+        },
+
+        // Values from configDefinition's def, not re-derived here, so the
+        // literal rep and the data rep cannot disagree on identity.
+        '// #MainMeta': () => {
+          Line(`    slug: ${JSON.stringify(configDef.main.slug)},`)
+          Line(`    version: ${JSON.stringify(configDef.main.version)},`)
+          Line(`    target: ${JSON.stringify(configDef.main.target)},`)
+        },
+
+        '// #FeatureClasses': () => {
+          each(feature, (f: any) => {
+            Line(` ${f.name}: ${nom(f, 'Name')}Feature,`)
+          })
+        },
+
+        '// #FeaturePlugins': () => pluginDefs(feature),
+
+        // Rendered from configDefinition's def, not from f.config, so the
+        // literal carries the feature's `transport` role (station design
+        // §8.4) beside its options and cannot drift from the data rep.
+        '// #FeatureConfigs': () => {
+          each(feature, (f: any) => {
+            Line(` ${f.name}: ${formatJson(configDef.feature[f.name], { margin: 4 })},`)
+          })
+        },
+
+
+        '// #EntityConfigs': () => {
+          each(entity, (entity: any) => {
+            Content(`
+        ${entity.name}: {
+        },
+  `)
+          })
+        },
+
+        "'ENTITYMAP'": formatJson(configDef.entity, { margin: 2 }).trim(),
+      }
+    })
+  })
+})
+
+
+
+function pluginImports(feature: any) {
+  each(feature, (f: any) => {
+    const bypath: Record<string, string[]> = {}
+
+    each(f.plugin, (plugin: any) => {
+      // Filter on `active` HERE rather than trusting the feature object to
+      // arrive filtered. Whether a model path was read with `only_active`
+      // varies by call site, and getting it wrong in this direction emits
+      // an import for a module the trim just deleted — an SDK that does
+      // not compile, rather than one that merely carries too much.
+      if (false === plugin.active || null == plugin.active) return
+
+      for (const [sym, one] of Object.entries(plugin.def?.ts || {})) {
+        const path = String(one)
+        ; (bypath[path] = bypath[path] || []).push(sym)
+      }
+    })
+
+    for (const path of Object.keys(bypath).sort()) {
+      const spec = './' + path.replace(/^src\//, '').replace(/\.ts$/, '')
+      Line(`import { ${bypath[path].sort().join(', ')} } from '${spec}'`)
+    }
+  })
+}
+
+function pluginDefs(feature: any) {
+  each(feature, (f: any) => {
+    const syms: string[] = []
+    each(f.plugin, (plugin: any) => {
+      if (false === plugin.active || null == plugin.active) return
+      syms.push(...Object.keys(plugin.def?.ts || {}))
+    })
+    if (0 < syms.length) {
+      Line(` ${f.name}: [${syms.sort().join(', ')}],`)
+    }
+  })
+}
+
+export {
+  Config
+}

@@ -1,0 +1,86 @@
+{
+  "existing": {
+    "automation": {
+      "AUTOMATION00": {
+        "connections": [],
+        "created_at": "s51",
+        "id": "AUTOMATION00",
+        "name": "s53",
+        "object": "s54",
+        "status": "s55",
+        "steps": [],
+        "updated_at": "s57"
+      },
+      "AUTOMATION01": {
+        "connections": [],
+        "created_at": "sa1",
+        "id": "AUTOMATION01",
+        "name": "sa3",
+        "object": "sa4",
+        "status": "sa5",
+        "steps": [],
+        "updated_at": "sa7"
+      },
+      "AUTOMATION02": {
+        "connections": [],
+        "created_at": "sf1",
+        "id": "AUTOMATION02",
+        "name": "sf3",
+        "object": "sf4",
+        "status": "sf5",
+        "steps": [],
+        "updated_at": "sf7"
+      }
+    }
+  },
+  "new": {
+    "automation": {
+      "automation_ref01": {
+        "connections": [],
+        "created_at": "s141",
+        "name": "s143",
+        "object": "s144",
+        "status": "s145",
+        "steps": [],
+        "updated_at": "s147"
+      }
+    }
+  },
+  "requests": {
+    "POST /automations/{automation_id}/duplicate": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /automations/{automation_id}/stop": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /automations": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /automations": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /automations/{automation_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /automations/{automation_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /automations/{automation_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

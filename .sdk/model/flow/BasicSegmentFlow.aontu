@@ -1,0 +1,32 @@
+# BasicSegmentFlow
+
+main: kit: flow: BasicSegmentFlow:
+{
+  entity: "segment",
+  kind: "basic",
+  name: "BasicSegmentFlow",
+  step: [
+    {
+      i: {
+        ref: "segment_ref01",
+        srcdatavar: "segment_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "segment01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-segment_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSegmentFlow"
+}

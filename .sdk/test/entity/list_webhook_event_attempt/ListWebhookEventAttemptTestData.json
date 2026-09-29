@@ -1,0 +1,46 @@
+{
+  "existing": {
+    "list_webhook_event_attempt": {
+      "LIST_WEBHOOK_EVENT_ATTEMPT00": {
+        "http_status_code": 40,
+        "id": "LIST_WEBHOOK_EVENT_ATTEMPT00",
+        "response": "s2a",
+        "sent_at": "s2b",
+        "event_id": "EVENT01",
+        "webhook_id": "WEBHOOK01"
+      },
+      "LIST_WEBHOOK_EVENT_ATTEMPT01": {
+        "http_status_code": 80,
+        "id": "LIST_WEBHOOK_EVENT_ATTEMPT01",
+        "response": "s52",
+        "sent_at": "s53",
+        "event_id": "EVENT01",
+        "webhook_id": "WEBHOOK01"
+      },
+      "LIST_WEBHOOK_EVENT_ATTEMPT02": {
+        "http_status_code": 120,
+        "id": "LIST_WEBHOOK_EVENT_ATTEMPT02",
+        "response": "s7a",
+        "sent_at": "s7b",
+        "event_id": "EVENT01",
+        "webhook_id": "WEBHOOK01"
+      }
+    }
+  },
+  "new": {
+    "list_webhook_event_attempt": {
+      "list_webhook_event_attempt_ref01": {
+        "http_status_code": 160,
+        "response": "sa2",
+        "sent_at": "sa3"
+      }
+    }
+  },
+  "requests": {
+    "GET /webhooks/{webhook_id}/events/{event_id}/attempts": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

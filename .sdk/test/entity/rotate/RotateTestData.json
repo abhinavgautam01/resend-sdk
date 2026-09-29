@@ -1,0 +1,39 @@
+{
+  "existing": {
+    "rotate": {
+      "ROTATE00": {
+        "id": "ROTATE00",
+        "object": "s1f",
+        "signing_secret": "s20",
+        "webhook_id": "WEBHOOK01"
+      },
+      "ROTATE01": {
+        "id": "ROTATE01",
+        "object": "s3d",
+        "signing_secret": "s3e",
+        "webhook_id": "WEBHOOK01"
+      },
+      "ROTATE02": {
+        "id": "ROTATE02",
+        "object": "s5b",
+        "signing_secret": "s5c",
+        "webhook_id": "WEBHOOK01"
+      }
+    }
+  },
+  "new": {
+    "rotate": {
+      "rotate_ref01": {
+        "object": "s79",
+        "signing_secret": "s7a"
+      }
+    }
+  },
+  "requests": {
+    "POST /webhooks/{webhook_id}/signing-secret/rotate": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

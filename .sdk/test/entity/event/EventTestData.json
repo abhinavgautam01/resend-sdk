@@ -1,0 +1,63 @@
+{
+  "existing": {
+    "event": {
+      "EVENT00": {
+        "created_at": "s3c",
+        "id": "EVENT00",
+        "name": "s3e",
+        "object": "s3f",
+        "schema": "s40",
+        "updated_at": "s41"
+      },
+      "EVENT01": {
+        "created_at": "s78",
+        "id": "EVENT01",
+        "name": "s7a",
+        "object": "s7b",
+        "schema": "s7c",
+        "updated_at": "s7d"
+      },
+      "EVENT02": {
+        "created_at": "sb4",
+        "id": "EVENT02",
+        "name": "sb6",
+        "object": "sb7",
+        "schema": "sb8",
+        "updated_at": "sb9"
+      }
+    }
+  },
+  "new": {
+    "event": {
+      "event_ref01": {
+        "created_at": "sf0",
+        "name": "sf2",
+        "object": "sf3",
+        "schema": "sf4",
+        "updated_at": "sf5"
+      }
+    }
+  },
+  "requests": {
+    "POST /events": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /events/send": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /events": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /events/{identifier}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

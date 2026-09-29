@@ -1,0 +1,27 @@
+{
+  "existing": {
+    "remove_audience_response_success": {
+      "REMOVE_AUDIENCE_RESPONSE_SUCCESS00": {
+        "id": "REMOVE_AUDIENCE_RESPONSE_SUCCESS00"
+      },
+      "REMOVE_AUDIENCE_RESPONSE_SUCCESS01": {
+        "id": "REMOVE_AUDIENCE_RESPONSE_SUCCESS01"
+      },
+      "REMOVE_AUDIENCE_RESPONSE_SUCCESS02": {
+        "id": "REMOVE_AUDIENCE_RESPONSE_SUCCESS02"
+      }
+    }
+  },
+  "new": {
+    "remove_audience_response_success": {
+      "remove_audience_response_success_ref01": {}
+    }
+  },
+  "requests": {
+    "DELETE /audiences/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

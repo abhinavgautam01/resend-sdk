@@ -1,0 +1,94 @@
+# Entity: usage
+
+main: kit: entity: usage: {
+
+  alias: field: {}
+
+  fields: {
+    ai_credits: {
+      h: "Ai Credits"
+      n: "ai_credits"
+      r: false
+      t: "`$OBJECT`"
+    }
+    automation_runs: {
+      h: "Automation Runs"
+      n: "automation_runs"
+      r: false
+      t: "`$OBJECT`"
+    }
+    broadcasts: {
+      h: "Broadcasts"
+      n: "broadcasts"
+      r: false
+      t: "`$OBJECT`"
+    }
+    contacts: {
+      h: "Contacts"
+      n: "contacts"
+      r: false
+      t: "`$OBJECT`"
+    }
+    domains: {
+      h: "Domains"
+      n: "domains"
+      r: false
+      t: "`$OBJECT`"
+    }
+    emails: {
+      h: "Emails"
+      n: "emails"
+      r: false
+      t: "`$OBJECT`"
+    }
+    object: {
+      h: "Object"
+      n: "object"
+      r: false
+      sh: "The type of object."
+      t: "`$STRING`"
+    }
+    rate_limit: {
+      h: "Rate Limit"
+      n: "rate_limit"
+      r: false
+      t: "`$OBJECT`"
+    }
+    segments: {
+      h: "Segments"
+      n: "segments"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "usage"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /usage"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/usage"
+          s: [
+            {
+              lit: "usage"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

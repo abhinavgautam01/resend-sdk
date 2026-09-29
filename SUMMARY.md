@@ -123,7 +123,7 @@ SDK operations: `create`, `list`, `load`.
 
 Key fields to recognise:
 
-- `audience_id`: Deprecated. Use segment_id instead.
+- `audience_id`: Deprecated. Use `segment_id` instead.
 - `created_at`: Timestamp indicating when the broadcast was created.
 - `from`: The email address of the sender.
 - `html`: The HTML version of the broadcast content.

@@ -157,7 +157,7 @@ main: kit: entity: emails_metric: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

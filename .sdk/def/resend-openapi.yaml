@@ -4449,7 +4449,7 @@ components:
                 example: November announcements
               audience_id:
                 type: string
-                description: Deprecated. Use segment_id instead.
+                description: Deprecated. Use `segment_id` instead.
                 example: 78261eea-8f8b-4381-83c6-79fa7120f1cf
                 deprecated: true
               segment_id:

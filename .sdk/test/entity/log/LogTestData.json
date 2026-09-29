@@ -1,0 +1,65 @@
+{
+  "existing": {
+    "log": {
+      "LOG00": {
+        "created_at": "s5a",
+        "endpoint": "s5b",
+        "id": "LOG00",
+        "method": "s5d",
+        "object": "s5e",
+        "request_body": "s5f",
+        "response_body": "s60",
+        "response_status": 97,
+        "user_agent": "s62"
+      },
+      "LOG01": {
+        "created_at": "sb4",
+        "endpoint": "sb5",
+        "id": "LOG01",
+        "method": "sb7",
+        "object": "sb8",
+        "request_body": "sb9",
+        "response_body": "sba",
+        "response_status": 187,
+        "user_agent": "sbc"
+      },
+      "LOG02": {
+        "created_at": "s10e",
+        "endpoint": "s10f",
+        "id": "LOG02",
+        "method": "s111",
+        "object": "s112",
+        "request_body": "s113",
+        "response_body": "s114",
+        "response_status": 277,
+        "user_agent": "s116"
+      }
+    }
+  },
+  "new": {
+    "log": {
+      "log_ref01": {
+        "created_at": "s168",
+        "endpoint": "s169",
+        "method": "s16b",
+        "object": "s16c",
+        "request_body": "s16d",
+        "response_body": "s16e",
+        "response_status": 367,
+        "user_agent": "s170"
+      }
+    }
+  },
+  "requests": {
+    "GET /logs": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /logs/{log_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

@@ -12,7 +12,7 @@ dist-test/
 *.tsbuildinfo
 
 # Generated logs
-log/
+/log/
 *.log
 
 # OS

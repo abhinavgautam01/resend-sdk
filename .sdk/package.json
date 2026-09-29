@@ -4,6 +4,7 @@
   "description": "Resend SDK Project",
   "scripts": {
     "generate": "node build/docgen.js && tsc --build src && voxgig-model model/sdk.aontu && voxgig-model test/test.aontu",
+    "postgenerate": "node -e \"const f='../LICENSE',fs=require('fs');fs.writeFileSync(f,fs.readFileSync(f,'utf8').replace(/^(Copyright \\\\(c\\\\) \\\\d+) Voxgig$/m,'\\$1 Abhinav Gautam'))\"",
     "watch-generate": "voxgig-model -w model/sdk.aontu",
     "dry-generate": "tsc --build src && voxgig-model -y model/sdk.aontu",
     "watch-dry-generate": "voxgig-model -w -y model/sdk.aontu",

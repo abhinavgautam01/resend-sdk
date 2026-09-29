@@ -4,5 +4,5 @@
 
 @"./base-guide.aontu"
 
-
-
+# GET /emails/metrics returns { object, totals, data: [...] }: list the data rows.
+guide: entity: emails_metric: path: "/emails/metrics": op: list: transform: res: "`body.data`"

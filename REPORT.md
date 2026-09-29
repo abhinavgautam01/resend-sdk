@@ -102,4 +102,4 @@ After these changes all CI checks pass: TypeScript 522 pass and 1 skipped, Pytho
 ## Time
 
 - Tool time: about 1 minute (scaffold plus generate).
-- Human time: _fill in_.
+- Human time: about 15 to 25 minutes, spent choosing the API and reading the Resend and Voxgig docs.
